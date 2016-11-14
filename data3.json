@@ -1,0 +1,36 @@
+{
+    "thumbnail": [
+        {
+            "items": [
+                {
+                    "img_src": "imgs/001.jpg",
+                    "t_label": "無敵海景",
+                    "p_text": "在這裡每間房間都是海景，而且因為是在山坡上，所以可是居高臨下的無敵海景。",
+                    "url": "http://apple.com",
+                    "loc": "China, HK",
+					"bar_percen": "20%",
+					"bar_color": "success",
+					"bar_active": "active"
+                },{
+					"img_src": "imgs/005.jpg",
+                    "t_label": "小丑魚的家",
+					"p_text": "小丑魚（Clownfish）是對雀鯛科底下的海葵魚亞科（Amphiprioninae）魚類的俗稱，是一種熱帶海水魚。",
+                    "url": "http://google.com",
+					"loc": "USA, NY",
+					"bar_percen": "40%",
+					"bar_color": "info",
+					"bar_active": "active"
+                },{
+					"img_src": "imgs/006.jpg",
+                    "t_label": "招潮蟹",
+					"p_text": "屬名 Uca，屬於沙蟹科。眼睛有細長的柄，很像火柴棒。雄性的雙螯一巨大一細小，左右大小懸殊，而雌蟹的雙螯同樣細小。",
+                    "url": "http://www.mobile01.com",
+					"loc": "JP, tokyo",
+					"bar_percen": "60%",
+					"bar_color": "danger",
+					"bar_active": "active"
+                }
+            ]
+        }
+    ]
+}

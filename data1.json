@@ -1,0 +1,45 @@
+{
+    "slideshow": [
+        {
+            "slide_links": [
+                {
+                    "active": "active",
+                    "img_src": "imgs/001.jpg",
+                    "title": "無敵海景",
+                    "p_text": "在這裡每間房間都是海景，而且因為是在山坡上，所以可是居高臨下的無敵海景。",
+                    "url": "http://apple.com"
+                },{
+                    "active": "",
+					"img_src": "imgs/002.jpg",
+                    "title": "被風吹歪的樹",
+                    "p_text": "「樹木維繫著我們的世界，」Rogers說。「樹能維持生物多樣性、提供建材，卻被我們所有人小看了。」",
+                    "url": "http://udn.com"
+                },{
+                    "active": "",
+					"img_src": "imgs/003.jpg",
+                    "title": "外太空太陽旭昇",
+					"p_text": "外太空與地球大氣層並沒有明確的界線，因為大氣隨著海拔增加而逐漸變薄。",
+                    "url": "http://www.pchome.com.tw"
+                },{
+                    "active": "",
+					"img_src": "imgs/004.jpg",
+                    "title": "南洋度假勝地",
+					"p_text": "波卡拉度假會館是東旅湯宿的姊妹館，位於遼闊的田野中，放眼望去皆是綠油油的一片，很有度假的感覺!!",
+                    "url": "http://tw.yahoo.com"
+                },{
+                    "active": "",
+					"img_src": "imgs/005.jpg",
+                    "title": "小丑魚的家",
+					"p_text": "小丑魚（Clownfish）是對雀鯛科底下的海葵魚亞科（Amphiprioninae）魚類的俗稱，是一種熱帶海水魚。",
+                    "url": "http://google.com"
+                },{
+                    "active": "",
+					"img_src": "imgs/006.jpg",
+                    "title": "招潮蟹",
+					"p_text": "屬名 Uca，屬於沙蟹科。眼睛有細長的柄，很像火柴棒。雄性的雙螯一巨大一細小，左右大小懸殊，而雌蟹的雙螯同樣細小。大螯的外觀像剪刀，小螯末端匙狀。雄蟹會揮舞大螯來求偶及保衛地盤，並做為打鬥的武器。",
+                    "url": "http://www.mobile01.com"
+                }
+            ]
+        }
+    ]
+}

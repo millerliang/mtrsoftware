@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LuAnn Lobby json data TestPage</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<!-- font icons -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<!-- jPut core JavaScript -->
+	<script src="js/jput.min.js"></script>
+	<!-- <script src="js/jput-2.js"></script> -->
+
+	<script>	
+	$(document).ready(function(){
+		//jPut Code
+		$('#main_div').jPut({
+			//ajax_url:'data2.json',
+			ajax_url:'http://twmac.no-ip.com/jput_json/data2.json',
+			name:'nav_bar',
+			dataName:'topnav',
+			error:function(e){
+				alert(e);
+			}
+		});
+
+		$('#slide_div').jPut({
+			//ajax_url:'data1.json',
+			ajax_url:'http://twmac.no-ip.com/jput_json/data1.json',
+			name:'slide_imgs',
+			dataName:'slideshow',
+			error:function(e){
+				alert(e);
+			}
+		});
+
+		$('#Thumbnail_div').jPut({
+			//ajax_url:'data3.json',
+			ajax_url:'http://twmac.no-ip.com/jput_json/data3.json',
+			name:'Thumbnail',
+			dataName:'thumbnail',
+			error:function(e){
+				alert(e);
+			}
+		});
+	});
+	</script>
+
+	<style>
+	body {
+		font-family:'微軟正黑體';
+		background-color:#f7fafa;
+		background-image: url(http://www.creative-tim.com/assets/bundle-55c78a25fc1bb55bc59652288b10f27f.jpg);
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-attachment: fixed;
+	}
+	.navbar {margin-bottom:0;background-color:rgba(255,255,255,.95);}
+	.navbar-default {border:0px solid transparent;border-bottom: 1px solid #666;}
+	.navbar-default a {color:white;}
+	.navbar-brand img {height: 150%;position: relative;float: left;margin: -.35em .5rem 0 0;}
+	.navbar,.affix{border-radius:0px;-webkit-transition: all .8s ease-in-out;-moz-transition: all .8s ease-in-out;-o-transition: all .8s ease-in-out;transition: all .8s ease-in-out;}
+	.affix {box-shadow:0px 2px 5px rgba(0,0,0,.1);width:100%;z-index:1;background-color:rgba(255,255,255,.75);border-bottom: 1px solid #e7e7e7;}
+
+	.thumbnail{min-height: 500px;}
+	#carousel-example-captions {box-shadow: 0px 5px 8px rgba(0,0,0,0.3);}
+	.list-group li a {display:block;text-decoration: none;}
+	.list-group .active a {color:#fff;display:block;}
+	
+	.footer-fluid {background-color:rgba(0,0,0,.98);;color: #fff;padding:2rem 0;}
+	</style>
+</head>
+<body>
+	
+<!-- jput main nav_bar -->
+<div jPut="nav_bar">
+	<ul class="nav navbar-nav">
+		<li><a href="{{h_link}}">{{name}}</a></li>
+		<li><a href="{{d_link}}">{{discover}}</a></li>
+		<li><a href="{{l_link}}">{{login}}</a></li>
+		<li><a href="{{s_link}}">{{signup}}</a></li>
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">下拉選單 <span class="caret"></span></a>
+			<!--dropdown details -->
+			<ul class="dropdown-menu" jrepeat="links"></ul>
+		</li>
+	</ul>
+</div>
+
+<!-- jput dropdown nav_bar -->
+<ul jPut="links">
+	<li><a href="{{url}}" target="_blank">{{sub_name}}</a></li>
+</ul>
+
+<!-- jput slideshow slide_imgs -->
+<div jPut="slide_imgs">
+	<div class="carousel-inner" role="listbox" jrepeat="slide_links"></div>
+</div>
+
+<!-- jput slideshow slide_imgs repeat -->
+<div jPut="slide_links">
+	<div class="item {{active}}">
+		<a class="img-responsive" href="{{url}}" target="_blank">
+			<img src="{{img_src}}" data-holder-rendered="true">
+		</a>
+		<div class="carousel-caption">
+			<h3>{{title}}</h3>
+			<p>{{p_text}}</p>
+		</div>
+	</div>
+</div>
+
+<nav class="navbar navbar-default" data-spy="affix" data-offset-top="2">
+	<div class="container">
+
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a class="navbar-brand" href="index.html"><img src="http://mtrsoftware.com.tw/images/Magic2.gif">MTR Software</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="#">公司簡介</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">產品介紹 <span class="caret"></span></a>
+					<!--dropdown details -->
+					<ul class="dropdown-menu">
+						<li><a href="#">試辦計畫</a></li>
+						<li role="presentation" class="divider"></li>
+						<li><a href="#">預防健保</a></li>
+						<li><a href="#">網路申報</a></li>
+						<li><a href="#">院所問答</a></li>
+						<li role="presentation" class="divider"></li>
+						<li><a href="#">快捷查詢</a></li>
+						<li><a href="#">病毒資訊</a></li>
+					</ul>
+				</li>
+				<li><a href="#">健保網站</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">檔案下載 <span class="caret"></span></a>
+					<!--dropdown details -->
+					<ul class="dropdown-menu">
+						<li><a href="#">診所版本更新</a></li>
+						<li><a href="#">藥局版本更新</a></li>
+						<li role="presentation" class="divider"></li>
+						<li><a href="#">健保相關</a></li>
+						<li><a href="#">蒙利特相關</a></li>
+						<li role="presentation" class="divider"></li>
+						<li><a href="#">驅動程式</a></li>
+						<li><a href="#">應用程式</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+			<div id="main_div" style="display:none;"></div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">ENG</a></li>
+			</ul>
+		</div>
+
+	</div><!-- /.container-fluid -->
+</nav>
+
+<div style="padding-top__:2rem;background-color: rgba(0,10,15,.5);">
+<div class="container" style="padding:2rem 2em 0;background-color: rgba(255,255,255,.9);">
+	
+	<div class="row">
+
+		<div class="col-sm-9">
+
+			<div role="tabpanel">
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane fade in active" id="T_a">
+
+						<div class="" data-example-id="carousel-with-captions">
+							<div id="carousel-example-captions" class="carousel slide" data-ride="carousel">
+								<ol class="carousel-indicators">
+									<li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
+									<li data-target="#carousel-example-captions" data-slide-to="1"></li>
+									<li data-target="#carousel-example-captions" data-slide-to="2"></li>
+									<li data-target="#carousel-example-captions" data-slide-to="3"></li>
+									<li data-target="#carousel-example-captions" data-slide-to="4"></li>
+									<li data-target="#carousel-example-captions" data-slide-to="5"></li>
+								</ol>
+
+								<div id="slide_div"></div>
+
+								<a class="left carousel-control" href="#carousel-example-captions" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">上一項</span>
+								</a>
+								<a class="right carousel-control" href="#carousel-example-captions" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">下一項</span>
+								</a>
+							</div>
+						</div>
+
+					</div>
+					<div role="tabpanel" class="tab-pane fade in" id="T_b">藥局版本更新</div>
+					<div role="tabpanel" class="tab-pane fade in" id="T_c">藥價更新下載</div>
+					<div role="tabpanel" class="tab-pane fade in" id="d">預防接種更新</div>
+				</div>
+
+			</div>
+
+		</div><!-- /.col-sm-9 -->
+		<div class="col-sm-3">
+			<!-- Nav tabs -->
+			<ul class="list-group nav__ nav-tabs__" role="tablist">
+				<li class="list-group-item active" role="presentation" class="active"><a href="#T_a" aria-controls="T_a" role="tab" data-toggle="tab">診所版本更新</a></li>
+				<li class="list-group-item" role="presentation"><a href="#T_b" aria-controls="T_b" role="tab" data-toggle="tab">藥局版本更新</a></li>
+				<li class="list-group-item" role="presentation"><a href="#T_c" aria-controls="T_c" role="tab" data-toggle="tab">藥價更新下載</a></li>
+				<li class="list-group-item" role="presentation"><a href="#T_d" aria-controls="T_d" role="tab" data-toggle="tab">預防接種更新</a></li>
+			</ul>
+		</div>
+
+	</div><!-- /.row -->
+
+	<div class="row_">
+		<div class="page-header">
+			<h1>
+				<span class="pull-right">
+					<a href="#" class="btn btn-default">more...</a>
+				</span>
+				What's Popular <small>Subtext for header</small>
+			</h1>
+		</div>
+	</div>
+	
+	<!-- jput Thumbnail ID -->
+	<div jPut="Thumbnail">
+		<div jrepeat="items"></div>
+	</div>
+	
+	<!-- jput Thumbnail repeat -->
+	<div jPut="items">
+		<div class="col-sm-6 col-md-4">
+			<div class="thumbnail">
+				<a href="{{url}}"><img class="img-responsive" src="{{img_src}}" data-holder-rendered="true"></a>
+				<div class="caption">
+					<h3>{{t_label}}</h3>
+					<p>{{p_text}}</p>
+					<p class="location"><i class="fa fa-map-marker"></i> {{loc}}</p>
+					<div class="progress">
+						<div class="progress-bar progress-bar-{{bar_color}} progress-bar-striped {{bar_active}}" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{bar_percen}};">
+						{{bar_percen}}
+						</div>
+					</div>
+					<p>
+						<a href="#" class="btn btn-primary" role="button">vote</a>
+						<a href="#" class="btn btn-default" role="button">view</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="Thumbnail_div" class="row"></div>
+
+	<div class="row">
+		<div class="col-sm-6 col-md-4">
+			<div class="thumbnail">
+				<a href="#"><img class="img-responsive" src="imgs/006.jpg" data-holder-rendered="true"></a>
+				<div class="caption">
+					<h3>{{Thumbnail label}}</h3>
+					<p>{{text text text text text text text.}}</p>
+					<p class="location"><i class="fa fa-map-marker"></i> {{纽约布鲁克林}}</p>
+					<div class="progress">
+						<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:20%;">
+						{{20%}}
+						</div>
+					</div>
+					<p>
+						<a href="#" class="btn btn-primary" role="button">vote</a>
+						<a href="#" class="btn btn-default" role="button">view</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<div class="thumbnail">
+				<a href="#"><img class="img-responsive" src="imgs/003.jpg" data-holder-rendered="true"></a>
+				<div class="caption">
+					<h3>Thumbnail label</h3>
+					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+					<div class="progress">
+						<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:40%;">
+						40%
+						</div>
+					</div>
+					<p><a href="#" class="btn btn-block btn-primary" role="button">Button</a> <a href="#" class="btn btn-block btn-default" role="button">Button</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<div class="thumbnail">
+				<a href="#"><img class="img-responsive" src="imgs/005.jpg" data-holder-rendered="true"></a>
+				<div class="caption">
+					<h3>Thumbnail label</h3>
+					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+					<div class="progress">
+						<div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+						60%
+						</div>
+					</div>
+					<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div><!-- /container -->
+</div><!-- /bg -->
+
+<footer class="footer-fluid">
+	<div class="container">
+		<div class="col-sm-1 hidden-xs">
+			<img src="http://mtrsoftware.com.tw/images/Magic2.gif">
+		</div>
+		<div class="col-sm-6">
+			<!-- <header><h3>蒙利特軟體有限公司</h3></header> -->
+			<img src="http://mtrsoftware.com.tw/images/MTRLOGO.gif">
+		</div>
+		<div class="col-sm-5">
+			<p><i class="fa fa-phone"></i> 電話：02-2304-7767~8</p>
+			<p><i class="fa fa-fax"></i> 傳真：02-2337-8834</p>
+			<p><i class="fa fa-building-o"></i> 地址：台北市中正區泉州街18之1號 6 樓</p>
+			<p><i class="fa fa-envelope-o"></i> <a href="mailto:monitor.server@msa.hinet.net?subject=蒙利特您好，有事請您幫忙!">service@msa.hinet.net</a></p>
+			<i class="fa fa-globe"></i> <a href="http://http://mtrsoftware.com.tw/">mtrsoftware.com.tw</a>
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>
