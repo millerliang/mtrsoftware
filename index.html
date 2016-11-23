@@ -55,7 +55,8 @@
 	body {
 		font-family:'微軟正黑體';
 		background-color:#f7fafa;
-		background-image: url(http://www.creative-tim.com/assets/bundle-55c78a25fc1bb55bc59652288b10f27f.jpg);
+		background-image__: url(http://www.creative-tim.com/assets/bundle-55c78a25fc1bb55bc59652288b10f27f.jpg);
+		background-image: url(imgs/1bg.jpg);
 		background-repeat:no-repeat;
 		background-size:cover;
 		background-attachment: fixed;
@@ -65,7 +66,7 @@
 	.navbar-default a {color:white;}
 	.navbar-brand img {height: 150%;position: relative;float: left;margin: -.35em .5rem 0 0;}
 	.navbar,.affix{border-radius:0px;-webkit-transition: all .8s ease-in-out;-moz-transition: all .8s ease-in-out;-o-transition: all .8s ease-in-out;transition: all .8s ease-in-out;}
-	.affix {box-shadow:0px 2px 5px rgba(0,0,0,.1);width:100%;z-index:1;background-color:rgba(255,255,255,.75);border-bottom: 1px solid #e7e7e7;}
+	.affix {box-shadow:0px 2px 5px rgba(0,0,0,.1);width:100%;z-index:3;background-color:rgba(255,255,255,.75);border-bottom: 1px solid #e7e7e7;}
 
 	.red {color:red;}
 	.blue {color:#0080ff;}
@@ -75,11 +76,14 @@
 	.list-group li a {display:block;text-decoration: none;}
 	.list-group .active a {color:#fff;display:block;}
 	
-	.footer-fluid {background-color:rgba(0,0,0,.98);;color: #fff;padding:2rem 0;}
+	.dropdown-menu li:hover .sub-menu {visibility: visible;}
+	.dropdown:hover .dropdown-menu {display: block;}
+	
+	.footer-fluid {background-color:rgba(0,0,0,.98);color: #fff;padding:2rem 0;}
 	@media (min-width: 1200px){
-		.container {width: 1360px;}
+		.container__ {width: 1360px;}
 	}
-	.tab-content {padding-top:1.2rem;}
+	.tab-content__ {padding-top:1.2rem;}
 	
 	.swiper-container {
         width: 100%;
@@ -105,6 +109,11 @@
         -webkit-align-items: center;
         align-items: center;
     }
+
+	.nav-tabs {border:none;}
+	.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {cursor: default;border:none;color: #fff;background-color: #1bcec5;}
+	.nav-tabs>li>a {color:#1ac5bc;}
+	.nav-tabs>li>a {border-radius: 4px;}
 	</style>
 </head>
 <body>
@@ -196,15 +205,15 @@
 				<li><a href="#">Contact</a></li>
 			</ul>
 			<div id="main_div" style="display:none;"></div>
-			<ul class="nav navbar-nav navbar-right">
+			<!-- <ul class="nav navbar-nav navbar-right">
 				<li><a href="#">ENG</a></li>
-			</ul>
+			</ul> -->
 		</div>
 
 	</div><!-- /.container-fluid -->
 </nav>
 
-<div style="padding-top__:2rem;background-color: rgba(0,10,15,.5);">
+<div style="padding-top__:2rem;background-color: rgba(0,10,15,.2);">
 <div class="container" style="padding:2rem 1.2em 0;background-color: rgba(255,255,255,.95);">
 	
 	<div class="row">
@@ -219,76 +228,100 @@
 				<li role="presentation"><a href="#T_e" aria-controls="T_e" role="tab" data-toggle="tab">預防接種更新</a></li>
 			</ul>
 		</div>
-		<div class="col-sm-9">
+		<div class="col-sm-12">
 
 			<div role="tabpanel">
 
 				<!-- Tab panes -->
-				<div class="tab-content">
+				<div class="tab-content" style="padding-top:1.2rem;">
 
 					<div role="tabpanel" class="tab-pane fade in active" id="T_a">
 
-						<div class="table-responsive">
-							<table class="table table-striped table-hover table-bordered__">
-								<thead>
-									<tr>
-										<th>日 期</th>
-										<th>類 別</th>
-										<th>健保相關政策公告</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>105.09.30</td>
-										<td class="text-success">疾管署</td>
-										<td><a href="" target="_blank">105年07月01起針對特定藥品重覆用藥核扣方案 <img src="http://mtrsoftware.com.tw/Home_page4.files/image001.gif"></a></td>
-									</tr>
-									<tr>
-										<td>105.07.19</td>
-										<td class="text-danger">健保政策</td>
-										<td><a href="" target="_blank">105全民健康保險鼓勵醫事服務機構即時查詢病患就醫資訊方案 <img src="http://mtrsoftware.com.tw/Home_page4.files/image001.gif"></a></a></td>
-									</tr>
-									<tr>
-										<td>105.05.05</td>
-										<td class="text-danger">健保政策</td>
-										<td><a href="" target="_blank">105年07月01起針對特定藥品重覆用藥核扣方案</a></td>
-									</tr>
-									<tr>
-										<td>105.05.03</td>
-										<td class="text-danger">健保政策</td>
-										<td><a href="" target="_blank">105年05月01日起75歲以上診察費加成7.5%</a></td>
-									</tr>
-									<tr>
-										<td>105.04.01</td>
-										<td class="text-danger">健保政策</td>
-										<td><a href="" target="_blank">105年04月起調升第一階診察費及各科專科加成支付點數表</a></td>
-									</tr>
-									<tr>
-										<td>105.04.11</td>
-										<td class="text-danger">健保政策</td>
-										<td><a href="" target="_blank">105年度全民健康保險西醫醫療資源不足地區改善方案</a></td>
-									</tr>
-									<tr>
-										<td>105.03.24</td>
-										<td class="text-danger">健保政策</td>
-										<td><a href="" target="_blank">105年度-全民康保險家庭醫師整合性照護計畫</a></td>
-									</tr>
-									<tr>
-										<td>105.03.07</td>
-										<td class="text-primary">蒙利特公司</td>
-										<td><a href="" target="_blank">由健保VPN網站下載【病患抽審名單】操作。</a></td>
-									</tr>
-									<tr>
-										<td>104.10.30</td>
-										<td class="text-primary">蒙利特公司</td>
-										<td><a href="" target="_blank">VPN網站【健保雲端藥歷查詢率】及【病患管製藥品查詢率】查詢指標結果操作說明</a></td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="">
-								<a href="#" class="btn btn-sm btn-default">more... <i class="fa fa-angle-down"></i></a>
-							</div>
-						</div>
+						<div class="row">
+							<div class="col-sm-9">
+
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane fade in active" id="cont_a">
+										<div class="table-responsive">
+											<table class="table table-striped table-hover table-bordered__">
+												<thead>
+													<tr>
+														<th>日 期</th>
+														<th>類 別</th>
+														<th>健保相關政策公告</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>105.09.30</td>
+														<td class="text-success">疾管署</td>
+														<td><a href="" target="_blank">105年07月01起針對特定藥品重覆用藥核扣方案 <img src="http://mtrsoftware.com.tw/Home_page4.files/image001.gif"></a></td>
+													</tr>
+													<tr>
+														<td>105.07.19</td>
+														<td class="text-danger">健保政策</td>
+														<td><a href="" target="_blank">105全民健康保險鼓勵醫事服務機構即時查詢病患就醫資訊方案 <img src="http://mtrsoftware.com.tw/Home_page4.files/image001.gif"></a></a></td>
+													</tr>
+													<tr>
+														<td>105.05.05</td>
+														<td class="text-danger">健保政策</td>
+														<td><a href="" target="_blank">105年07月01起針對特定藥品重覆用藥核扣方案</a></td>
+													</tr>
+													<tr>
+														<td>105.05.03</td>
+														<td class="text-danger">健保政策</td>
+														<td><a href="" target="_blank">105年05月01日起75歲以上診察費加成7.5%</a></td>
+													</tr>
+													<tr>
+														<td>105.04.01</td>
+														<td class="text-danger">健保政策</td>
+														<td><a href="" target="_blank">105年04月起調升第一階診察費及各科專科加成支付點數表</a></td>
+													</tr>
+													<tr>
+														<td>105.04.11</td>
+														<td class="text-danger">健保政策</td>
+														<td><a href="" target="_blank">105年度全民健康保險西醫醫療資源不足地區改善方案</a></td>
+													</tr>
+													<tr>
+														<td>105.03.24</td>
+														<td class="text-danger">健保政策</td>
+														<td><a href="" target="_blank">105年度-全民康保險家庭醫師整合性照護計畫</a></td>
+													</tr>
+													<tr>
+														<td>105.03.07</td>
+														<td class="blue">蒙利特公司</td>
+														<td><a href="" target="_blank">由健保VPN網站下載【病患抽審名單】操作。</a></td>
+													</tr>
+													<tr>
+														<td>104.10.30</td>
+														<td class="blue">蒙利特公司</td>
+														<td><a href="" target="_blank">VPN網站【健保雲端藥歷查詢率】及【病患管製藥品查詢率】查詢指標結果操作說明</a></td>
+													</tr>
+												</tbody>
+											</table>
+											<div class="">
+												<a href="#" class="btn btn-sm btn-default">more... <i class="fa fa-angle-down"></i></a>
+											</div>
+										</div><!-- /.table-responsive -->
+									</div><!-- /.cont_a -->
+									<div role="tabpanel" class="tab-pane" id="cont_b"><h1>藥局版本更新</h1></div><!-- /.cont_b -->
+									<div role="tabpanel" class="tab-pane" id="cont_c"><h1>藥價更新下載</h1></div><!-- /.cont_c -->
+									<div role="tabpanel" class="tab-pane" id="cont_d"><h1>預防接種更新</h1></div><!-- /.cont_d -->
+									<div role="tabpanel" class="tab-pane" id="cont_e"><h1>EEEEE</h1></div><!-- /.cont_e -->
+
+								</div><!-- /.tab-content -->
+							</div><!-- /.col-sm-9 -->
+							<div class="col-sm-3" style="display__:none;padding-top:1.2rem;">
+								<!-- Nav tabs -->
+								<ul class="list-group nav__ nav-tabs__" role="tablist">
+									<li class="list-group-item active" role="presentation" class="active"><a href="#cont_a" aria-controls="cont_a" role="tab" data-toggle="tab">健保相關政策公告</a></li>
+									<li class="list-group-item" role="presentation"><a href="#cont_b" aria-controls="cont_b" role="tab" data-toggle="tab">藥局版本更新</a></li>
+									<li class="list-group-item" role="presentation"><a href="#cont_c" aria-controls="cont_c" role="tab" data-toggle="tab">藥價更新下載</a></li>
+									<li class="list-group-item" role="presentation"><a href="#cont_d" aria-controls="cont_d" role="tab" data-toggle="tab">預防接種更新</a></li>
+								</ul>
+							</div><!-- /.col-sm-3 -->
+						</div><!-- /.row -->
 
 					</div>
 					<div role="tabpanel" class="tab-pane fade in" id="T_b">
@@ -410,17 +443,7 @@
 
 			</div>
 
-		</div><!-- /.col-sm-9 -->
-		<div class="col-sm-3" style="display__:none;padding-top:1.2rem;">
-			<!-- Nav tabs -->
-			<ul class="list-group nav__ nav-tabs__" role="tablist">
-				<li class="list-group-item active" role="presentation" class="active"><a href="#T_a" aria-controls="T_a" role="tab" data-toggle="tab">健保相關政策公告</a></li>
-				<li class="list-group-item" role="presentation"><a href="#T_b" aria-controls="T_b" role="tab" data-toggle="tab">診所版本更新</a></li>
-				<li class="list-group-item" role="presentation"><a href="#T_c" aria-controls="T_c" role="tab" data-toggle="tab">藥局版本更新</a></li>
-				<li class="list-group-item" role="presentation"><a href="#T_d" aria-controls="T_d" role="tab" data-toggle="tab">藥價更新下載</a></li>
-				<li class="list-group-item" role="presentation"><a href="#T_e" aria-controls="T_e" role="tab" data-toggle="tab">預防接種更新</a></li>
-			</ul>
-		</div>
+		</div><!-- /.col-sm-12 -->
 
 	</div><!-- /.row -->
 
@@ -465,7 +488,7 @@
 
 	<div id="Thumbnail_div" class="row" style="display:none;"></div>
 
-	<div class="col-com-12" style="min-height: 500px;margin-bottom__:2rem;">
+	<div class="col-com-12" style="min-height: 500px;margin-bottom__:2rem;display:none;">
 		<!-- Swiper -->
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
@@ -650,11 +673,8 @@
 				<i class="fa fa-fax"></i> 傳真：02-2337-8834<br>
 				<i class="fa fa-building-o"></i> 地址：台北市中正區泉州街18之1號 6 樓
 			</address>
-			<!-- <p><i class="fa fa-phone"></i> 電話：02-2304-7767~8</p>
-			<p><i class="fa fa-fax"></i> 傳真：02-2337-8834</p>
-			<p><i class="fa fa-building-o"></i> 地址：台北市中正區泉州街18之1號 6 樓</p> -->
 			<p><i class="fa fa-envelope-o"></i> <a href="mailto:monitor.server@msa.hinet.net?subject=蒙利特您好，有事請您幫忙!">service@msa.hinet.net</a><br>
-			<i class="fa fa-globe"></i> <a href="http://http://mtrsoftware.com.tw/">mtrsoftware.com.tw</a></p>
+			<i class="fa fa-globe"></i> <a href="//mtrsoftware.com.tw/">mtrsoftware.com.tw</a></p>
 		</div>
 	</div>
 </footer>
