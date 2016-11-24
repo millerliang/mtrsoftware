@@ -12,44 +12,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<!-- Link Swiper's CSS -->
 	<link rel="stylesheet" href="css/swiper.min.css">
-	<!-- jPut core JavaScript -->
-	<script src="js/jput.min.js"></script>
-	<!-- <script src="js/jput-2.js"></script> -->
-
-	<script>	
-	$(document).ready(function(){
-		//jPut Code
-		$('#main_div').jPut({
-			ajax_url:'data2.json',
-			//ajax_url:'http://twmac.no-ip.com/jput_json/data2.json',
-			name:'nav_bar',
-			dataName:'topnav',
-			error:function(e){
-				alert(e);
-			}
-		});
-
-		$('#slide_div').jPut({
-			ajax_url:'data1.json',
-			//ajax_url:'http://twmac.no-ip.com/jput_json/data1.json',
-			name:'slide_imgs',
-			dataName:'slideshow',
-			error:function(e){
-				alert(e);
-			}
-		});
-
-		$('#Thumbnail_div').jPut({
-			ajax_url:'data3.json',
-			//ajax_url:'http://twmac.no-ip.com/jput_json/data3.json',
-			name:'Thumbnail',
-			dataName:'thumbnail',
-			error:function(e){
-				alert(e);
-			}
-		});
-	});
-	</script>
+	<script src="js/master.min.js"></script>
 
 	<style>
 	body {
@@ -66,7 +29,7 @@
 	.navbar-default a {color:white;}
 	.navbar-brand img {height: 150%;position: relative;float: left;margin: -.35em .5rem 0 0;}
 	.navbar,.affix{border-radius:0px;-webkit-transition: all .8s ease-in-out;-moz-transition: all .8s ease-in-out;-o-transition: all .8s ease-in-out;transition: all .8s ease-in-out;}
-	.affix {box-shadow:0px 2px 5px rgba(0,0,0,.1);width:100%;z-index:3;background-color:rgba(255,255,255,.75);border-bottom: 1px solid #e7e7e7;}
+	.affix {box-shadow:0px 2px 5px rgba(0,0,0,.1);width:100%;z-index:3;background-color:rgba(255,255,255,.85);border-bottom: 1px solid #e7e7e7;}
 
 	.red {color:red;}
 	.blue {color:#0080ff;}
@@ -117,45 +80,6 @@
 	</style>
 </head>
 <body>
-	
-<!-- jput main nav_bar -->
-<div jPut="nav_bar">
-	<ul class="nav navbar-nav">
-		<li><a href="{{h_link}}">{{name}}</a></li>
-		<li><a href="{{d_link}}">{{discover}}</a></li>
-		<li><a href="{{l_link}}">{{login}}</a></li>
-		<li><a href="{{s_link}}">{{signup}}</a></li>
-		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">下拉選單 <span class="caret"></span></a>
-			<!--dropdown details -->
-			<ul class="dropdown-menu" jrepeat="links"></ul>
-		</li>
-	</ul>
-</div>
-
-<!-- jput dropdown nav_bar -->
-<ul jPut="links">
-	<li><a href="{{url}}" target="_blank">{{sub_name}}</a></li>
-</ul>
-
-<!-- jput slideshow slide_imgs -->
-<div jPut="slide_imgs">
-	<div class="carousel-inner" role="listbox" jrepeat="slide_links"></div>
-</div>
-
-<!-- jput slideshow slide_imgs repeat -->
-<div jPut="slide_links">
-	<div class="item {{active}}">
-		<a class="img-responsive" href="{{url}}" target="_blank">
-			<img src="{{img_src}}" data-holder-rendered="true">
-		</a>
-		<div class="carousel-caption">
-			<h3>{{title}}</h3>
-			<p>{{p_text}}</p>
-		</div>
-	</div>
-</div>
-
 <nav class="navbar navbar-default" data-spy="affix" data-offset-top="2">
 	<div class="container">
 
@@ -171,40 +95,7 @@
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="#">公司簡介</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">產品介紹 <span class="caret"></span></a>
-					<!--dropdown details -->
-					<ul class="dropdown-menu">
-						<li><a href="#">試辦計畫</a></li>
-						<li role="presentation" class="divider"></li>
-						<li><a href="#">預防健保</a></li>
-						<li><a href="#">網路申報</a></li>
-						<li><a href="#">院所問答</a></li>
-						<li role="presentation" class="divider"></li>
-						<li><a href="#">快捷查詢</a></li>
-						<li><a href="#">病毒資訊</a></li>
-					</ul>
-				</li>
-				<li><a href="#">健保網站</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">檔案下載 <span class="caret"></span></a>
-					<!--dropdown details -->
-					<ul class="dropdown-menu">
-						<li><a href="#">診所版本更新</a></li>
-						<li><a href="#">藥局版本更新</a></li>
-						<li role="presentation" class="divider"></li>
-						<li><a href="#">健保相關</a></li>
-						<li><a href="#">蒙利特相關</a></li>
-						<li role="presentation" class="divider"></li>
-						<li><a href="#">驅動程式</a></li>
-						<li><a href="#">應用程式</a></li>
-					</ul>
-				</li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-			<div id="main_div" style="display:none;"></div>
+			<!-- <div id="main_div" style="display:none;"></div> -->
 			<!-- <ul class="nav navbar-nav navbar-right">
 				<li><a href="#">ENG</a></li>
 			</ul> -->
@@ -213,10 +104,140 @@
 	</div><!-- /.container-fluid -->
 </nav>
 
-<div style="padding-top__:2rem;background-color: rgba(0,10,15,.2);">
-<div class="container" style="padding:2rem 1.2em 0;background-color: rgba(255,255,255,.95);">
-	
+<div style="padding-top__:2rem;background-color: rgba(0,10,15,.3);">
+<div class="container" style="padding:0 1em;background-color: rgba(255,255,255,.95);">
+
 	<div class="row">
+		<div id="loading">
+			<h1><center>Loading...</center></h1>
+		</div>
+
+		<div class="col-com-12_" style="min-height_: 500px;margin-bottom__:2rem;display__:none;">
+			<!-- Swiper -->
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+
+						<img class="img-responsive" src="imgs/002.jpg">
+						<!-- <div class="col-sm-4">
+							<img class="img-responsive" src="http://mtrsoftware.com.tw/Page_C/DS111-.jpg">
+						</div>
+						<div class="col-sm-7">
+							<h2>自動備份伺服器</h2>
+							<ol>
+								<li>電腦可能因天災因素遺失資料(水災)</li>
+								<li>電腦可能因人禍因素遺失資料(人為破壞、遭小偷)</li>
+								<li>電腦可能因系統因素遺失資料(電腦中毒、硬碟損壞)</li>
+							</ol>
+							<p class="location"><i class="fa fa-dot-circle-o"></i> 功能簡介</p>
+							<ul>
+								<li>可自行設定特定一週特定日期及時間自動進行備份資料、也可每天自動備份</li>
+								<li>可自行設定要備份的資料匣及目錄、可過濾不要備份的副檔名資料。</li>
+								<li>於看診作業中也可進行資料備份，可節省您每天等待備份的時間</li>
+								<li>完全於背景進行自動備份,不受您看診的干擾</li>
+								<li>主機體積小可放置於任何安全隱密的位置</li>
+								<li>此主機備份優於外接式硬碟及隨身碟、不需要插拔、使用期限較長不容易故障、可確保資料完整性、是診所及藥局最佳備份利器。</li>
+								<li>本主機出廠時並不含硬碟機</li>
+								<li>網路版的客戶必要備份工具</li>
+							</ul>
+							<p class="location"><i class="fa fa-dot-circle-o"></i> 本公司優惠方案</p>
+							<p>備份伺服器一台＋SATA3- 1TG硬碟＋網路連線設定+安裝備份軟體電腦設定，全部到府安裝及設定。</p>
+							<h2 class="red">特價：12,000 元</h2>
+						</div> -->
+							
+					</div>
+					<div class="swiper-slide">
+
+						<img class="img-responsive" src="imgs/003.jpg">
+
+						<!-- <div class="col-sm-4 col-sm-offset-1">
+							<img class="img-responsive" src="http://mtrsoftware.com.tw/Page_C/%E5%A4%9A%E5%AA%92%E9%AB%94%E7%9C%8B%E6%9D%BF2.JPG">
+						</div>
+						<div class="col-sm-7">
+							<h2>多媒體看板+叫號燈</h2>
+							<p class="location"><i class="fa fa-dot-circle-o"></i> 功能簡介</p>
+							<ul>
+								<li>候診清單畫面，可同時顯示2個診間的候診資訊每５秒自動切換。</li>
+								<li>進入該病患看診時，會發出叮咚叮咚聲音。</li>
+								<li>可顯示目前看診病患，及下一位看診病患。</li>
+								<li>左下方可放置一個廣告圖片。</li>
+								<li>可自訂下方跑馬燈資訊。</li>
+								<li>上方可顯示今天日期時間及星期。</li>
+								<li>支援播放所有影片格式，如衛?影片，網路下載的影片，DVD等...</li>
+								<li>也可播放Flash 動畫檔。</li>
+								<li>中間畫面也可播放圖片檔。</li>
+								<li>可結闔第四台電視節目同時播放。</li>
+							</ul>
+						</div> -->
+
+					</div>
+					<div class="swiper-slide">
+
+						<img class="img-responsive" src="imgs/004.jpg">
+						<!-- <div class="col-sm-4 col-sm-offset-1">
+							<img class="img-responsive" src="http://mtrsoftware.com.tw/Page_C/HC-3000LRA.jpg">
+							<h4 class="text-primary">Com Pot 連接埠-建議購買</h4>
+						</div>
+						<div class="col-sm-7">
+							<h2>健保 IC 卡讀卡機</h2>
+							<h4>HC-3000 LRA 型</h4>
+							<ul>
+								<li>有液晶面版顯示讀卡機狀態</li>
+								<li>健保IC卡採用上方直立式插卡方式</li>
+								<li>醫事人員卡採用讀卡機右側插卡方式</li>
+								<li>可加購兩顆4號充電電池、可使認證狀態保持三小時</li>
+								<li>使用RS-232連接線 COM POT與電腦連接</li>
+								<li>適用於診所內部及認證後外出讀卡使用(如：安養院、巡迴醫療)等..。不支援筆記型電腦使用。</li>
+								<li class="red">注意電腦主機要有 RS-232連接埠，才可安裝此讀卡機。</li>
+							</ul>
+							<p class="location"><i class="fa fa-dot-circle-o"></i> 代理經銷商</p>
+							<p>公司：蒙利特軟體有限公司<br>
+								地址：(100)台北市中正區泉州街18之1號6樓<br>
+								電話：02-23047767  傳真：02-23378834
+							</p>
+							<h2 class="red">售價：3,500 元 (台)</h2>
+							<p><span class="red">未稅價</span> (開發票者請事先告知)</p>
+							<blockquote>
+								<p>讀卡機驅動程式下載： <a href="http://mtrsoftware.com.tw/download/FreeFile/Page3/%E8%99%B9%E5%A0%A1%E7%A7%91%E6%8A%80/Reader_HC3000.dll">Reader_HC3000.dll</a> 版本：1.2.3.8E</p>
+								<p>下載後請將檔名更改為 <span class="red">Reader.dll</span></p>
+								<ul style="font-size:small;">
+									<li>32位元Windows系統：複製到【C:\Windows\System32】路徑下</li>
+									<li>64位元Windows系統：複製到【C:\Windows\SysWOW64】路徑下</li>
+									<li>64位元Windows系統：複製到【C:\Windows\System32】路徑下</li>
+								</ul>
+							</blockquote>
+							<p class="location"><i class="fa fa-dot-circle-o"></i> 代理維修資訊</p>
+							<p><span class="red">健保IC卡讀卡機<br>
+							讀卡機健保卡插槽(損壞，感應不良，插健保卡燈不亮) 等…<br>
+							更換零件及維修費用：650 元 (件)</span> <span class="text-warning">快修-費用內含郵寄費（貨到二天內寄回）</span><br>
+							貨品請寄至本公司即可</p>
+						</div> -->
+
+					</div>
+					<div class="swiper-slide"><img class="img-responsive" src="imgs/005.jpg"></div>
+					<!-- <div class="swiper-slide">Slide 5</div> -->
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+				<!-- Add Arrows -->
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+
+			<!-- Swiper JS -->
+			<script src="js/swiper.min.js"></script>
+
+			<!-- Initialize Swiper -->
+			<script>
+			var swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination',
+				paginationClickable: true,
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+				spaceBetween: 30
+			});
+			</script>
+		</div>
 
 		<!-- Nav tabs -->
 		<div class="col-sm-12">
@@ -244,7 +265,7 @@
 								<div class="tab-content">
 									<div role="tabpanel" class="tab-pane fade in active" id="cont_a">
 										<div class="table-responsive">
-											<table class="table table-striped table-hover table-bordered__">
+											<table id="hotNews" class="table table-striped table-hover table-bordered__">
 												<thead>
 													<tr>
 														<th>日 期</th>
@@ -384,29 +405,7 @@
 					</div>
 					<div role="tabpanel" class="tab-pane fade in" id="T_c">
 
-						<div class="" data-example-id="carousel-with-captions">
-							<div id="carousel-example-captions" class="carousel slide" data-ride="carousel">
-								<ol class="carousel-indicators">
-									<li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
-									<li data-target="#carousel-example-captions" data-slide-to="1"></li>
-									<li data-target="#carousel-example-captions" data-slide-to="2"></li>
-									<li data-target="#carousel-example-captions" data-slide-to="3"></li>
-									<li data-target="#carousel-example-captions" data-slide-to="4"></li>
-									<li data-target="#carousel-example-captions" data-slide-to="5"></li>
-								</ol>
-
-								<div id="slide_div"></div>
-
-								<a class="left carousel-control" href="#carousel-example-captions" role="button" data-slide="prev">
-									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-									<span class="sr-only">上一項</span>
-								</a>
-								<a class="right carousel-control" href="#carousel-example-captions" role="button" data-slide="next">
-									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-									<span class="sr-only">下一項</span>
-								</a>
-							</div>
-						</div>
+						<img src="imgs/2bg.jpg">
 						
 					</div>
 					<div role="tabpanel" class="tab-pane fade in" id="T_d">
@@ -438,7 +437,10 @@
 						</div>
 
 					</div>
-					<div role="tabpanel" class="tab-pane fade in" id="T_e">預防接種更新</div>
+					<div role="tabpanel" class="tab-pane fade in" id="T_e">
+						預防接種更新<br>
+						<img style="max-width:100%;" src="imgs/3bg.jpg">
+					</div>
 				</div>
 
 			</div>
@@ -457,159 +459,7 @@
 			</h1>
 		</div>
 	</div>
-	
-	<!-- jput Thumbnail ID -->
-	<div jPut="Thumbnail">
-		<div jrepeat="items"></div>
-	</div>
-	
-	<!-- jput Thumbnail repeat -->
-	<div jPut="items">
-		<div class="col-sm-6 col-md-4">
-			<div class="thumbnail">
-				<a href="{{url}}"><img class="img-responsive" src="{{img_src}}" data-holder-rendered="true"></a>
-				<div class="caption">
-					<h3>{{t_label}}</h3>
-					<p>{{p_text}}</p>
-					<p class="location"><i class="fa fa-map-marker"></i> {{loc}}</p>
-					<div class="progress">
-						<div class="progress-bar progress-bar-{{bar_color}} progress-bar-striped {{bar_active}}" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{bar_percen}};">
-						{{bar_percen}}
-						</div>
-					</div>
-					<p>
-						<a href="#" class="btn btn-primary" role="button">vote</a>
-						<a href="#" class="btn btn-default" role="button">view</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="Thumbnail_div" class="row" style="display:none;"></div>
-
-	<div class="col-com-12" style="min-height: 500px;margin-bottom__:2rem;display:none;">
-		<!-- Swiper -->
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-
-					<div class="col-sm-4">
-						<img class="img-responsive" src="http://mtrsoftware.com.tw/Page_C/DS111-.jpg">
-					</div>
-					<div class="col-sm-7">
-						<h2>自動備份伺服器</h2>
-						<ol>
-							<li>電腦可能因天災因素遺失資料(水災)</li>
-							<li>電腦可能因人禍因素遺失資料(人為破壞、遭小偷)</li>
-							<li>電腦可能因系統因素遺失資料(電腦中毒、硬碟損壞)</li>
-						</ol>
-						<p class="location"><i class="fa fa-dot-circle-o"></i> 功能簡介</p>
-						<ul>
-							<li>可自行設定特定一週特定日期及時間自動進行備份資料、也可每天自動備份</li>
-							<li>可自行設定要備份的資料匣及目錄、可過濾不要備份的副檔名資料。</li>
-							<li>於看診作業中也可進行資料備份，可節省您每天等待備份的時間</li>
-							<li>完全於背景進行自動備份,不受您看診的干擾</li>
-							<li>主機體積小可放置於任何安全隱密的位置</li>
-							<li>此主機備份優於外接式硬碟及隨身碟、不需要插拔、使用期限較長不容易故障、可確保資料完整性、是診所及藥局最佳備份利器。</li>
-							<li>本主機出廠時並不含硬碟機</li>
-							<li>網路版的客戶必要備份工具</li>
-						</ul>
-						<p class="location"><i class="fa fa-dot-circle-o"></i> 本公司優惠方案</p>
-						<p>備份伺服器一台＋SATA3- 1TG硬碟＋網路連線設定+安裝備份軟體電腦設定，全部到府安裝及設定。</p>
-						<h2 class="red">特價：12,000 元</h2>
-					</div>
-						
-				</div>
-				<div class="swiper-slide">
-
-					<div class="col-sm-4 col-sm-offset-1">
-						<img class="img-responsive" src="http://mtrsoftware.com.tw/Page_C/%E5%A4%9A%E5%AA%92%E9%AB%94%E7%9C%8B%E6%9D%BF2.JPG">
-					</div>
-					<div class="col-sm-7">
-						<h2>多媒體看板+叫號燈</h2>
-						<p class="location"><i class="fa fa-dot-circle-o"></i> 功能簡介</p>
-						<ul>
-							<li>候診清單畫面，可同時顯示2個診間的候診資訊每５秒自動切換。</li>
-							<li>進入該病患看診時，會發出叮咚叮咚聲音。</li>
-							<li>可顯示目前看診病患，及下一位看診病患。</li>
-							<li>左下方可放置一個廣告圖片。</li>
-							<li>可自訂下方跑馬燈資訊。</li>
-							<li>上方可顯示今天日期時間及星期。</li>
-							<li>支援播放所有影片格式，如衛?影片，網路下載的影片，DVD等...</li>
-							<li>也可播放Flash 動畫檔。</li>
-							<li>中間畫面也可播放圖片檔。</li>
-							<li>可結闔第四台電視節目同時播放。</li>
-						</ul>
-					</div>
-
-				</div>
-				<div class="swiper-slide">
-
-					<div class="col-sm-4 col-sm-offset-1">
-						<img class="img-responsive" src="http://mtrsoftware.com.tw/Page_C/HC-3000LRA.jpg">
-						<h4 class="text-primary">Com Pot 連接埠-建議購買</h4>
-					</div>
-					<div class="col-sm-7">
-						<h2>健保 IC 卡讀卡機</h2>
-						<h4>HC-3000 LRA 型</h4>
-						<ul>
-							<li>有液晶面版顯示讀卡機狀態</li>
-							<li>健保IC卡採用上方直立式插卡方式</li>
-							<li>醫事人員卡採用讀卡機右側插卡方式</li>
-							<li>可加購兩顆4號充電電池、可使認證狀態保持三小時</li>
-							<li>使用RS-232連接線 COM POT與電腦連接</li>
-							<li>適用於診所內部及認證後外出讀卡使用(如：安養院、巡迴醫療)等..。不支援筆記型電腦使用。</li>
-							<li class="red">注意電腦主機要有 RS-232連接埠，才可安裝此讀卡機。</li>
-						</ul>
-						<p class="location"><i class="fa fa-dot-circle-o"></i> 代理經銷商</p>
-						<p>公司：蒙利特軟體有限公司<br>
-							地址：(100)台北市中正區泉州街18之1號6樓<br>
-							電話：02-23047767  傳真：02-23378834
-						</p>
-						<h2 class="red">售價：3,500 元 (台)</h2>
-						<p><span class="red">未稅價</span> (開發票者請事先告知)</p>
-						<blockquote>
-							<p>讀卡機驅動程式下載： <a href="http://mtrsoftware.com.tw/download/FreeFile/Page3/%E8%99%B9%E5%A0%A1%E7%A7%91%E6%8A%80/Reader_HC3000.dll">Reader_HC3000.dll</a> 版本：1.2.3.8E</p>
-							<p>下載後請將檔名更改為 <span class="red">Reader.dll</span></p>
-							<ul style="font-size:small;">
-								<li>32位元Windows系統：複製到【C:\Windows\System32】路徑下</li>
-								<li>64位元Windows系統：複製到【C:\Windows\SysWOW64】路徑下</li>
-								<li>64位元Windows系統：複製到【C:\Windows\System32】路徑下</li>
-							</ul>
-						</blockquote>
-						<p class="location"><i class="fa fa-dot-circle-o"></i> 代理維修資訊</p>
-						<p><span class="red">健保IC卡讀卡機<br>
-						讀卡機健保卡插槽(損壞，感應不良，插健保卡燈不亮) 等…<br>
-						更換零件及維修費用：650 元 (件)</span> <span class="text-warning">快修-費用內含郵寄費（貨到二天內寄回）</span><br>
-						貨品請寄至本公司即可</p>
-					</div>
-
-				</div>
-				<div class="swiper-slide">Slide 4</div>
-				<div class="swiper-slide">Slide 5</div>
-			</div>
-			<!-- Add Pagination -->
-			<div class="swiper-pagination"></div>
-			<!-- Add Arrows -->
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
-		</div>
-
-		<!-- Swiper JS -->
-		<script src="js/swiper.min.js"></script>
-
-		<!-- Initialize Swiper -->
-		<script>
-		var swiper = new Swiper('.swiper-container', {
-			pagination: '.swiper-pagination',
-			paginationClickable: true,
-			nextButton: '.swiper-button-next',
-			prevButton: '.swiper-button-prev',
-			spaceBetween: 30
-		});
-		</script>
-	</div>
+	<!-- <div id="items-containter"></div> -->
 
 	<div class="row">
 		<div class="col-sm-6 col-md-4 col-lg-3">
@@ -657,27 +507,16 @@
 </div><!-- /container -->
 </div><!-- /bg -->
 
-<footer class="footer-fluid">
+<footer id="footer" class="footer-fluid">
 	<div class="container">
 		<div class="col-sm-1 hidden-xs">
 			<img src="http://mtrsoftware.com.tw/images/Magic2.gif">
 		</div>
 		<div class="col-sm-6 hidden-xs">
-			<!-- <header><h3>蒙利特軟體有限公司</h3></header> -->
 			<img src="http://mtrsoftware.com.tw/images/MTRLOGO.gif">
 		</div>
-		<div class="col-sm-5">
-			<address>
-				<strong>Mtrsoftware, Inc.</strong><br>
-				<i class="fa fa-phone"></i> 電話：02-2304-7767~8<br>
-				<i class="fa fa-fax"></i> 傳真：02-2337-8834<br>
-				<i class="fa fa-building-o"></i> 地址：台北市中正區泉州街18之1號 6 樓
-			</address>
-			<p><i class="fa fa-envelope-o"></i> <a href="mailto:monitor.server@msa.hinet.net?subject=蒙利特您好，有事請您幫忙!">service@msa.hinet.net</a><br>
-			<i class="fa fa-globe"></i> <a href="//mtrsoftware.com.tw/">mtrsoftware.com.tw</a></p>
-		</div>
+		<div id="compny_info" class="col-sm-5"></div>
 	</div>
 </footer>
-
 </body>
 </html>
