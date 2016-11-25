@@ -147,7 +147,7 @@
             "pot_date": "105.09.30",
             "up_date": "105.10.05",
 			"verson": "7.52",
-			"cont": "<li>修改-D2案件(11月申報)，年齡超過75歲程式會自動加成診察費7.5%的問題。D2不可加成</li>。<li>修改-如使用A6 size 列印交付檢驗單病名只會印ICD-9 編碼，應印出ICD-10編碼。</li>",
+			"cont": "<li>修改-D2案件(11月申報)，年齡超過75歲程式會自動加成診察費7.5%的問題。D2不可加成。</li><li>修改-如使用A6 size 列印交付檢驗單病名只會印ICD-9 編碼，應印出ICD-10編碼。</li>",
 			"dl_url": "http://mtrsoftware.com.tw/download/MTRUP/MtrVer752.exe"
         },
         {
