@@ -52,7 +52,7 @@
 		<div class="row">
 			<article class="col-sm-9">
 				<h2>和君点滴 items list</h2>
-				<p class="text-muted"><i class="fa fa-book"></i> for web Database.</p>
+				<p class="text-muted"><i class="fa fa-book"></i> for Firebase Database.</p>
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -81,17 +81,17 @@
 				<h3>Form tools</h3>
 				<form id="form" class="form-group" ____v-on:submit.prevent="addBook">
 					<label for="bookImg" class="text-muted">图片连结</label>
-					<input id="bookImg" class="form-control" type="text" v-model="newBook.img" placeholder="img url link"><br>
+					<input id="bookImg" class="form-control" type="text" v-model="newDandi.img" placeholder="img url link"><br>
 					<label for="bookTitle" class="text-muted">标题名称</label>
-					<input id="bookTitle" class="form-control" type="text" v-model="newBook.title" placeholder="Title"><br>
+					<input id="bookTitle" class="form-control" type="text" v-model="newDandi.title" placeholder="Title"><br>
 					<label for="bookAuthor" class="text-muted">Tag Name</label>
-					<input id="bookAuthor" class="form-control" type="text" v-model="newBook.subName" placeholder="Tag"><br>
+					<input id="bookAuthor" class="form-control" type="text" v-model="newDandi.subName" placeholder="Tag"><br>
 					<label for="bookUrl" class="text-muted">网页连结</label>
-					<input id="bookUrl" class="form-control" type="text" v-model="newBook.url" placeholder="Url"><br>
+					<input id="bookUrl" class="form-control" type="text" v-model="newDandi.url" placeholder="Url"><br>
 					<footer>
-						<button type="button" class="btn btn-primary" v-if="!newBook['.key']" @click="addBook">New item</button>
-						<button type="button" class="btn btn-success" v-if="newBook['.key']" @click="updateBook(newBook)">Update</button>
-						<button type="button" class="btn btn-default" v-if="newBook['.key']" @click="CancelBtn">Cancel &times;</button>
+						<button type="button" class="btn btn-primary" v-if="!newDandi['.key']" @click="addBook">New item</button>
+						<button type="button" class="btn btn-success" v-if="newDandi['.key']" @click="updateBook(newDandi)">Update</button>
+						<button type="button" class="btn btn-default" v-if="newDandi['.key']" @click="CancelBtn">Cancel &times;</button>
 					</footer>
 				</form>
 			</aside>
@@ -120,12 +120,12 @@
 	firebase.initializeApp(config);
 	
 	var db = firebase.database();
-	var bookRef = db.ref('dandiitems');
+	var dandiRef = db.ref('dandiitems');
 
 	var app = new Vue({
 		el: '#app',
 		data: {
-			newBook: {
+			newDandi: {
 				img: '',
 				title: '',
 				subName: '',
@@ -133,30 +133,30 @@
 			}
 		},
 		firebase: {
-			books: bookRef
+			books: dandiRef
 		},
 		methods: {
 			addBook: function(){
-				bookRef.push(this.newBook);
-				this.newBook.img = "";
-				this.newBook.title = "";
-				this.newBook.subName = "";
-				this.newBook.url = "";
+				dandiRef.push(this.newDandi);
+				this.newDandi.img = "";
+				this.newDandi.title = "";
+				this.newDandi.subName = "";
+				this.newDandi.url = "";
 				toastr.info('Add new Book.')
 			},
 			editBook: function(book){
-				this.newBook = book;
+				this.newDandi = book;
 				toastr.warning('Edit this Book')
 			},
 			removeBook: function(book){
-				bookRef.child(book['.key']).remove();
+				dandiRef.child(book['.key']).remove();
 				toastr.error('Remove this item')
 			},
 			updateBook: function(book) {
 				var childKey = book['.key'];
 				//this.$firebaseRefs.books.child(childKey).set(book)
 				delete book['.key'];
-				bookRef.child(childKey).set(book)
+				dandiRef.child(childKey).set(book)
 				location.reload();
 				//toastr.info('Uppdate this Book.')
 			},
