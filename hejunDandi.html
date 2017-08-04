@@ -2,14 +2,17 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Hejun Dandi Manager Page</title>
+	<title>和君前台管理 Manager Page</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 	<style>
 		thead th:last-child,tbody td:last-child{text-align:center;white-space:nowrap;}
 		.img-responsive{max-width:128px;}
+		dl dt {font-weight: normal;color:#999;min-width:4em;float:left;margin-right:.6rem;}
+		.thisTop {margin-top:.8rem;}
 	</style>
 </head>
 
@@ -24,14 +27,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Hejun Dandi Manager</a>
+				<a class="navbar-brand" href="#">和君前台管理 Manager</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Text</a></li>
-					<li><a href="#about">Text</a></li>
-					<li><a href="#contact">Text</a></li>
-					<li class="dropdown">
+					<li><a href="#">Swiper Slide</a></li>
+					<li class="active"><a href="#">Dandi items</a></li>
+					<li><a href="#">Course list</a></li>
+					<!-- <li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">Text</a></li>
@@ -42,7 +45,7 @@
 							<li><a href="#">Text</a></li>
 							<li><a href="#">Text</a></li>
 						</ul>
-					</li>
+					</li> -->
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -56,22 +59,27 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Pict</th>
-							<th>Title</th>
-							<th>tag</th>
-							<th>Url Link</th>
+							<th>Picture</th>
+							<th>Contant</th>
 							<th>Tools</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="book in books" :key="book['.key']">
-							<td><img class="img-responsive" v-bind:src="book.img" alt=" image"></td>
-							<td>{{book.title}}</td>
-							<td>{{book.subName}}</td>
-							<td><a v-bind:href="book.url" target="_blank">{{book.url}}</a></td>
+						<tr v-for="item in items" :key="item['.key']">
+							<td><img class="img-responsive" :src="item.img" alt=" image"></td>
 							<td>
-								<button class="btn btn-link" @click="editBook(book)"><i class="fa fa-edit text-muted"></i> Edit</button>
-								<button class="btn btn-link" @click="removeBook(book)"><i class="fa fa-trash-o text-danger"></i></button>
+								<dl>
+									<dt>Title</dt>
+									<dd><h4>{{item.title}}</h4></dd>
+									<dt>Tag</dt>
+									<dd>{{item.subName}}</dd>
+									<dt class="thisTop">Url Link</dt>
+									<dd class="thisTop"><a :href="item.url" target="_blank">{{item.url}}</a></dd>
+								</dl>
+							</td>
+							<td>
+								<button class="btn btn-link" @click="editItem(item)"><i class="fa fa-edit text-muted"></i> Edit</button>
+								<button class="btn btn-link" @click="removeItem(item)"><i class="fa fa-trash-o text-danger"></i></button>
 							</td>
 						</tr>
 					</tbody>
@@ -79,19 +87,21 @@
 			</article>
 			<aside class="col-sm-3 _col-sm-offset-1">
 				<h3>Form tools</h3>
-				<form id="form" class="form-group" ____v-on:submit.prevent="addBook">
-					<label for="bookImg" class="text-muted">图片连结</label>
-					<input id="bookImg" class="form-control" type="text" v-model="newDandi.img" placeholder="img url link"><br>
-					<label for="bookTitle" class="text-muted">标题名称</label>
-					<input id="bookTitle" class="form-control" type="text" v-model="newDandi.title" placeholder="Title"><br>
-					<label for="bookAuthor" class="text-muted">Tag Name</label>
-					<input id="bookAuthor" class="form-control" type="text" v-model="newDandi.subName" placeholder="Tag"><br>
-					<label for="bookUrl" class="text-muted">网页连结</label>
-					<input id="bookUrl" class="form-control" type="text" v-model="newDandi.url" placeholder="Url"><br>
+				<form id="form" class="form-group">
+					<label for="itemImg" class="text-muted">图片连结</label>
+					<input id="itemImg" class="form-control" type="text" v-model="newItem.img" placeholder="img url link"><br>
+					<section :class="[alterClass,'animated']">
+						<label for="itemTitle" class="text-muted">标题名称</label>
+						<input id="itemTitle" @click="myTitleClass" class="form-control" type="text" v-model="newItem.title" placeholder="Title"><br>
+					</section>
+					<label for="itemAuthor" class="text-muted">Tag</label>
+					<input id="itemAuthor" class="form-control" type="text" v-model="newItem.subName" placeholder="Tag"><br>
+					<label for="itemUrl" class="text-muted">网页连结</label>
+					<input id="itemUrl" class="form-control" type="text" v-model="newItem.url" placeholder="Url"><br>
 					<footer>
-						<button type="button" class="btn btn-primary" v-if="!newDandi['.key']" @click="addBook">New item</button>
-						<button type="button" class="btn btn-success" v-if="newDandi['.key']" @click="updateBook(newDandi)">Update</button>
-						<button type="button" class="btn btn-default" v-if="newDandi['.key']" @click="CancelBtn">Cancel &times;</button>
+						<button type="button" class="btn btn-primary" v-if="!newItem['.key']" @click="addItem">New item</button>
+						<button type="button" class="btn btn-success" v-if="newItem['.key']" @click="updateItem(newItem)">Update</button>
+						<button type="button" class="btn btn-default" v-if="newItem['.key']" @click="CancelBtn">Cancel &times;</button>
 					</footer>
 				</form>
 			</aside>
@@ -120,12 +130,13 @@
 	firebase.initializeApp(config);
 	
 	var db = firebase.database();
-	var dandiRef = db.ref('dandiitems');
+	var itemsRef = db.ref('dandiitems');
 
 	var app = new Vue({
 		el: '#app',
 		data: {
-			newDandi: {
+			alterClass:"",
+			newItem: {
 				img: '',
 				title: '',
 				subName: '',
@@ -133,36 +144,48 @@
 			}
 		},
 		firebase: {
-			books: dandiRef
+			items: itemsRef
 		},
 		methods: {
-			addBook: function(){
-				dandiRef.push(this.newDandi);
-				this.newDandi.img = "";
-				this.newDandi.title = "";
-				this.newDandi.subName = "";
-				this.newDandi.url = "";
-				toastr.info('Add new Book.')
+			myTitleClass: function(){
+				this.alterClass = "";
 			},
-			editBook: function(book){
-				this.newDandi = book;
-				toastr.warning('Edit this Book')
+			addItem: function(){
+				if( this.newItem.title == ""){
+					this.alterClass = "shake has-error";
+					toastr.error('必填欄位')
+				}else{
+					itemsRef.push(this.newItem);
+					this.newItem.img = "";
+					this.newItem.title = "";
+					this.newItem.subName = "";
+					this.newItem.url = "";
+					toastr.info('Add new item.')
+				}
 			},
-			removeBook: function(book){
-				dandiRef.child(book['.key']).remove();
-				toastr.error('Remove this item')
+			editItem: function(item){
+				this.newItem = item;
+				toastr.info('Edit this item')
 			},
-			updateBook: function(book) {
-				var childKey = book['.key'];
-				//this.$firebaseRefs.books.child(childKey).set(book)
-				delete book['.key'];
-				dandiRef.child(childKey).set(book)
+			removeItem: function(item){
+				var checkstr =  confirm('are you sure you want to delete this?');
+				if(checkstr == true){
+					itemsRef.child(item['.key']).remove();
+					toastr.error('Remove this item')
+					delete item['.key'];
+					this.newItem = "";
+				}else{
+					return false;
+				}
+			},
+			updateItem: function(item) {
+				var childKey = item['.key'];
+				delete item['.key'];
+				itemsRef.child(childKey).set(item)
 				location.reload();
-				//toastr.info('Uppdate this Book.')
 			},
-			CancelBtn: function(book) {
+			CancelBtn: function(item) {
 				location.reload();
-				//delete book['.key'];
 			}
 		}
 	})
