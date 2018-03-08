@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Tinymce Editer test</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>#myEdit h1 {color: orange;}</style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Tinymce Sample Editer</h1>
+        <nav class="nav justify-content-end">
+            <a class="nav-link text-muted" href="#">Cancel</a>
+            <button class="nav-link btn btn-sm btn-info"><i class="fa fa-save"></i> Save</button>
+        </nav>
+        <hr>
+        <form method="post">
+            <textarea name="" id="myEdit"></textarea>
+        </form>
+    </main>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- TinyMCE v4.7.9 -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.9/tinymce.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.9/plugins/colorpicker/plugin.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.9/plugins/media/plugin.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.9/plugins/autoresize/plugin.min.js'></script>
+    <script>
+        tinyMCE.init({
+            // 初始化參數設定[註1]
+            selector: "textarea", // 目標物件
+            auto_focus: "myEdit", // 聚焦物件
+            language: "zh_TW", // 語系(CDN沒有中文，需要下載原始source才有)
+            language_url: 'js/tinymce_zh_TW.js', // 語系(CDN沒有中文，需要下載原始source才有)
+            theme: "modern", // 模板風格
+            style_formats: [
+                { title: "PDF icon", selector: "a", classes: "btn btn-mini" },
+            ],
+            plugins: "preview fullpage autoresize code autolink wordcount fullscreen image link media table charmap hr insertdatetime lists textcolor media contextmenu colorpicker help", // 套件設定: 進階清單、自動連結、連結、上傳圖片、清單、特殊字元表、預覽
+            toolbar: ["undo redo | formatselect | bold italic strikethrough forecolor backcolor | link image | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat preview code"],
+            mobile: { // 行動裝置設定
+                theme: "mobile", // 模板風格
+                plugins: ["autosave", "lists", "autolink"],  // 套件設定: 自動儲存、清單、自動連結
+                toolbar: ["undo", "bold", "italic", "styleselect"]  // 工具列設定: 復原、粗體、斜體、樣式表
+            }
+        });
+    </script>
+</body>
+
+</html>
