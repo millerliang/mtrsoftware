@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tinymce Editor</title>
+    <title>CK Editor</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -85,12 +85,10 @@
                         <div class="modal-body">
                             <form>
                                 <section class="form-group">
-                                    <!-- <label for="itemTitle" class="form-control-label text-muted">標題</label> -->
                                     <input id="itemTitle" @click="myTitleClass" class="form-control" :class="[alterClass,'animated']" type="text" v-model="newItem.title" placeholder="輸入標題名稱">
                                 </section>
                                 <section class="row form-group">
                                     <div class="col">
-                                        <!-- <label for="itemImg" class="form-control-label text-muted">類別</label> -->
                                         <select class="form-control" v-model="newItem.type">
                                             <option value="0">請選擇類別</option>
                                             <option value="蒙利特公司">蒙利特公司</option>
@@ -104,14 +102,13 @@
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <!-- <label for="itemAuthor" class="form-control-label text-muted">時間</label> -->
                                         <input id="itemAuthor" class="form-control" type="date" v-model="newItem.date" placeholder="輸入日期">
                                     </div>
                                 </section>
-                                <!-- <textarea id="texteditor" v-model="newItem.cont" placeholder="add multiple lines"></textarea> -->
-                                <my-component></my-component>
+                                <textarea id="texteditor" name="editorDemo" v-model="newItem.cont" placeholder="add multiple lines"></textarea>
+                                <!-- <my-component></my-component> -->
                             </form>
-                            <div style="padding:1rem;">
+                            <div style="padding:1rem 0;">
                                 <button type="button" class="btn btn-info" id="formGet">Get Content</button>
                                 <button type="button" class="btn btn-success" id="formSet">Set Content</button>
                             </div>
@@ -137,12 +134,9 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <!-- TinyMCE v4.7.9 -->
-    <script src='//cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.9/tinymce.min.js'></script>
-    <script src='//cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.9/plugins/colorpicker/plugin.min.js'></script>
-    <script src='//cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.9/plugins/media/plugin.min.js'></script>
-    <script src='//cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.9/plugins/autoresize/plugin.min.js'></script>
+    
+    <!-- CKEdit v4.8 -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.8.0/ckeditor.js'></script>
     <!-- Vue2.js link -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
     <!-- Google Firebase config -->
@@ -200,16 +194,11 @@
                     type: '',
                     title: '',
                     date: '',
-                    cont: ''
+                    cont: 'text test...'
                 }
             },
             firebase: {
                 items: itemsRef
-            },
-            computed: {
-                sortItems: function () {
-                    return this.items.sort(sortNumber);
-                }
             },
             methods: {
                 myTitleClass: function () {
@@ -278,43 +267,15 @@
             }
         })
 
-        function sortNumber(a, b) {
-            return a - b
-        }
+        // CKEdit v4
+        CKEDITOR.replace('editorDemo');
 
-        tinyMCE.init({
-            // 初始化參數設定
-            selector: "textarea", // 目標物件
-            auto_focus: "texteditor", // 聚焦物件
-            language: "zh_TW", // 中文語系樣式
-            language_url: 'js/tinymce_zh_TW.js', // 中文語系位置
-            theme: "modern", // 外觀樣式風格
-            content_css: ['//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'], // 導入樣式
-            style_formats: [ // 設置自定樣式
-                { title: 'btn', inline: 'span', classes: 'btn btn-sm btn-info' },
-                { title: 'text-danger', inline: 'span', classes: 'text-danger' },
-                { title: 'icon-pdf', inline: 'i', classes: 'fa fa-file-pdf-o' },
-                { title: 'icon-word', inline: 'i', classes: 'fa fa-file-word-o' },
-            ],
-            plugins: "preview fullpage autoresize code autolink wordcount fullscreen image link media table charmap hr insertdatetime lists textcolor media contextmenu colorpicker help", // 套件設定: 進階清單、自動連結、連結、上傳圖片、清單、特殊字元表、預覽
-            toolbar: ["undo redo | formatselect | styleselect | bold italic strikethrough forecolor backcolor | link image | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat preview code"],
-            mobile: { // 行動裝置設定
-                theme: "mobile", // 模板風格
-                plugins: ["autosave", "lists", "autolink"],  // 套件設定: 自動儲存、清單、自動連結
-                toolbar: ["undo", "bold", "italic", "styleselect"]  // 工具列設定: 復原、粗體、斜體、樣式表
-            }
-        });
-
-        $("#formGet").click(function(){
-            let content = tinymce.get("texteditor").getContent();
-            $(".data-container").html(content);
-        });
-
-        $("#formSet").click(function(){
-            // let decoded = $('<div/>').append(text).text();
-            // tinymce.activeEditor.setContent(this.newItem.cont);
-            tinymce.get('data-container').setContent("texteditor");
-            tinymce.activeEditor.setContent(data);
+        $("#formGet").click(function () {
+            // var element = CKEDITOR.document.getById('texteditor');
+            // alert(element.getDocument().equals(CKEDITOR.document)); // true
+            var node = editor.document.getBody().getFirst();
+            var parent = node.getParent();
+            alert(parent.getName()); // 'body'
         });
 
     </script>

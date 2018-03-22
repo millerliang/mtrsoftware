@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Froala Editor</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css' />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    
+    <!-- Include CSS for icons. -->
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'/>
+    <!-- Include Editor style. -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css"/>
+    <style>
+        .modal {z-index:5;}
+        .modal-lg {max-width: 1280px;}
+        .modal-backdrop,.sticky-top {z-index:4;}
+    </style>
+</head>
+<body>
+    <main id="app" class="container">
+        <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
+            <h1 class="navbar-brand mb-0">
+                <img width="33" src="//mtrsoftware.com.tw/images/Magic2.gif" /> MTRsoftware Admin
+            </h1>
+            <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <!-- <li class="nav-item active">
+                            <a class="nav-link" href="#">Item <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Item</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="#">Action 1</a>
+                                <a class="dropdown-item" href="#">Action 2</a>
+                            </div>
+                        </li> -->
+                </ul>
+                <ul class="navbar-nav justify-content-end">
+                    <li class="nav-item">
+                        <button class="btn btn-sm btn-danger" @click="newAddItem()"><i class="fa fa-plus"></i> 新增消息</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <hr>
+        <article>
+            <h3>HotNews List</h3>
+            <table class="table table-sm table-hover table-striped">
+                <thead class="text-nowrap">
+                    <tr>
+                        <th>日 期</th>
+                        <th>類 別</th>
+                        <th>標 題</th>
+                        <th>內 容</th>
+                        <th class="text-center">功 能</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in reverseItems" :key="item['.key']">
+                        <td class="text-nowrap">{{item.date}}</td>
+                        <td class="text-nowrap">{{item.type}}</td>
+                        <td>{{item.title}}</td>
+                        <td v-html="item.cont"></td>
+                        <td class="text-center text-nowrap">
+                            <button class="btn btn-link" @click="editItem(item)" title="編輯項目">
+                                <i class="fa fa-edit text-muted"></i>
+                            </button>
+                            <button class="btn btn-link" @click="removeItem(item)" title="刪除項目">
+                                <i class="fa fa-trash-o text-danger"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Edit Modal -->
+            <div class="modal fade editModal" data-backdrop="static">
+                <article class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <header class="modal-header">
+                            <h4 class="modal-title" id="modelTitleId">
+                                <span v-if="!newItem['.key']"><i class="fa fa-plus text-danger"></i> 新增消息</span>
+                                <span v-if="newItem['.key']"><i class="fa fa-pencil text-success"></i> 編輯消息</span>
+                            </h4>
+                            <button type="button" class="close" @click="CancelBtn">
+                                <span>&times;</span>
+                            </button>
+                        </header>
+                        <div class="modal-body">
+                            <section class="form-group">
+                                <input id="itemTitle" @click="myTitleClass" class="form-control" :class="[alterClass,'animated']" type="text" v-model="newItem.title" placeholder="輸入標題名稱">
+                            </section>
+                            <section class="row form-group">
+                                <div class="col">
+                                    <select class="form-control" v-model="newItem.type">
+                                        <option value="0">請選擇類別</option>
+                                        <option value="蒙利特公司">蒙利特公司</option>
+                                        <option value="健保政策">健保政策</option>
+                                        <option value="健保資訊">健保資訊</option>
+                                        <option value="國民健康局">國民健康局</option>
+                                        <option value="醫師公會">醫師公會</option>
+                                        <option value="技術問題">技術問題</option>
+                                        <option value="國健署">國健署</option>
+                                        <option value="疾管署">疾管署</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <input id="itemAuthor" class="form-control" type="date" v-model="newItem.date" placeholder="輸入日期">
+                                </div>
+                                <div class="col">
+                                    <article class="btn-toolbar justify-content-between">
+                                        <section class="btn-group">
+                                            <button class="btn btn-sm btn-outline-secondary" data-iconSet-1 title="插入 pdf 圖示">icon
+                                                <i class="fa fa-file-pdf-o"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary" data-iconSet-2 title="插入 word 圖示">icon
+                                                <i class="fa fa-file-word-o"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary" data-iconSet-new title="插入 new 圖示">icon
+                                                <img src="//mtrsoftware.com.tw/images/new17.gif">
+                                            </button>
+                                        </section>
+                                        <!-- <section class="btn-group">
+                                            <button class="btn btn-sm btn-outline-secondary" data-iconSet-3 title="insert excel icon">icon
+                                                <i class="fa fa-file-excel-o"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary" data-iconSet-4 title="insert powerpoint icon">icon
+                                                <i class="fa fa-file-powerpoint-o"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary" data-iconSet-5 title="insert text icon">icon
+                                                <i class="fa fa-file-text-o"></i>
+                                            </button>
+                                        </section> -->
+                                    </article>
+                                </div>
+                            </section>
+                            <textarea class="form-control" id="froala-editor" v-html="newItem.cont" v-model="newItem.cont"></textarea>
+                            <!-- <div class="form-control mt-3 mb-3 d-none">
+                                <h4>- preview -</h4>
+                                <div id="preview"></div>
+                            </div> -->
+                        </div>
+                        <footer class="modal-footer">
+                            <button type="button" class="btn btn-default" @click="CancelBtn">&times; 取消</button>
+                            <button type="button" class="btn btn-info" v-if="!newItem['.key']" @click="addItem">
+                                <i class="fa fa-save"></i> 新增</button>
+                            <button type="button" class="btn btn-success" v-if="newItem['.key']" @click="updateItem(newItem)">
+                                <i class="fa fa-check"></i> 更新</button>
+                        </footer>
+                    </div>
+                </article>
+            </div>
+        </article>
+        <!-- vue = id:app -->
+        <hr>
+        <footer class="mt-3 mb-3 text-center">
+            <small class="text-muted">WebDesign by Miller</small>
+        </footer>
+    </main>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Optional JavaScript -->
+
+    <!-- Include jQuery lib. -->
+    <!-- Include Editor JS files. -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script>
+    <!-- Include the language file. -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.6/js/languages/zh_tw.js'></script>
+    <!-- Initialize the editor. -->
+    <!-- Vue2.js link -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+    <!-- Google Firebase config -->
+    <script src="//www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <!-- VueFire -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/vuefire/1.4.5/vuefire.min.js'></script>
+    <!-- toastr.js -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js'></script>
+    <!-- Froala WYSIWYG HTML editor -->
+    <script src="js/FroalaEditor.js"></script>
+</body>
+
+</html>
