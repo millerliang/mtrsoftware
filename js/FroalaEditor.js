@@ -166,7 +166,7 @@ $(function () {
                 editor.events.focus()
             })
             editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-new]', function () {
-                editor.html.insert('<img class="ml-2" src="//mtrsoftware.com.tw/images/new17.gif">')
+                editor.html.insert('<img class="ml-2" src="http://mtrsoftware.com.tw/images/new17.gif">')
                 editor.events.focus()
             })
         })
