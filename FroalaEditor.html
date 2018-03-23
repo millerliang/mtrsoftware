@@ -13,8 +13,8 @@
     <!-- Include CSS for icons. -->
     <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'/>
     <!-- Include Editor style. -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css"/>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.5/css/froala_editor.pkgd.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.5/css/froala_style.min.css"/>
     <style>
         .modal {z-index:5;}
         .modal-lg {max-width: 1280px;}
@@ -146,10 +146,7 @@
                                 </div>
                             </section>
                             <textarea class="form-control" id="froala-editor" v-html="newItem.cont" v-model="newItem.cont"></textarea>
-                            <!-- <div class="form-control mt-3 mb-3 d-none">
-                                <h4>- preview -</h4>
-                                <div id="preview"></div>
-                            </div> -->
+
                         </div>
                         <footer class="modal-footer">
                             <button type="button" class="btn btn-default" @click="CancelBtn">&times; 取消</button>
@@ -170,19 +167,15 @@
     </main>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- Optional JavaScript -->
 
-    <!-- Include jQuery lib. -->
-    <!-- Include Editor JS files. -->
-    <!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.0/js/froala_editor.pkgd.min.js"></script> -->
+    <!-- Include Froala Editor v2.7.5 JS files. -->
     <script type="text/javascript" src="js/froala_editor.pkgd.min.js"></script>
-    <!-- Include the language file. -->
-    <script src='//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.6/js/languages/zh_tw.js'></script>
-    <!-- Initialize the editor. -->
+    <!-- Include the Froala Editor language file. -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.5/js/languages/zh_tw.js'></script>
     <!-- Vue2.js link -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
     <!-- Google Firebase config -->
