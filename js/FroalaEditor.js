@@ -23,6 +23,7 @@ $(function () {
                 type: '',
                 title: '',
                 date: '',
+                twYear: '',
                 cont: ''
             }
         },
@@ -46,6 +47,7 @@ $(function () {
                 this.newItem.type = '0'
                 this.newItem.title = ''
                 this.newItem.date = ''
+                this.newItem.twYear = ''
                 this.newItem.cont = ''
                 // toastr.info('建立新項目')
             },
@@ -55,11 +57,8 @@ $(function () {
                     toastr.error('標題為必填欄位')
                 } else {
                     this.newItem.cont = $('#froala-editor').froalaEditor('html.get')
+                    this.newItem.twYear = document.querySelector('#twYear').value
                     itemsRef.push(this.newItem)
-                    this.newItem.type = ''
-                    this.newItem.title = ''
-                    this.newItem.date = ''
-                    this.newItem.cont = ''
                     toastr.info('新增成功')
                     $('.editModal').modal('toggle')
                 }
@@ -90,6 +89,7 @@ $(function () {
                     let childKey = item['.key']
                     delete item['.key']
                     this.newItem.cont = $('#froala-editor').froalaEditor('html.get')
+                    this.newItem.twYear = document.querySelector('#twYear').value
                     itemsRef.child(childKey).set(item)
                     delete childKey
                     // toastr.info('更新成功')
@@ -103,6 +103,22 @@ $(function () {
             }
         }
     })
+
+    /* event listener */
+    document.querySelector('#itemAuthor').addEventListener('change', doThing);
+
+    /* function */
+    function doThing() {
+        if (this.value === ''){
+            document.querySelector('#twYear').value = ('')
+            return false
+        }else{
+            let tempNum = this.value.replace(/-/g,".")
+            let twYear = (this.value.substr(0,4) - 1911 )
+            // document.querySelector('#twYear').value = (`${tempNum} = 民國 ${twYear}年`)
+            document.querySelector('#twYear').value = (`${twYear}年`)
+        }
+    }
 
     // Do something​
     // const QS = document.querySelector('.form-control') // 簡化固定 Const 變數

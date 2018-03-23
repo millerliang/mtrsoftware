@@ -60,6 +60,7 @@
                 <thead class="text-nowrap">
                     <tr>
                         <th>日 期</th>
+                        <th>民 國</th>
                         <th>類 別</th>
                         <th>標 題</th>
                         <th>內 容</th>
@@ -69,6 +70,7 @@
                 <tbody>
                     <tr v-for="item in reverseItems" :key="item['.key']">
                         <td class="text-nowrap">{{item.date}}</td>
+                        <td class="text-nowrap">{{item.twYear}}</td>
                         <td class="text-nowrap">{{item.type}}</td>
                         <td>{{item.title}}</td>
                         <td v-html="item.cont"></td>
@@ -117,6 +119,9 @@
                                 </div>
                                 <div class="col">
                                     <input id="itemAuthor" class="form-control" type="date" v-model="newItem.date" placeholder="輸入日期">
+                                </div>
+                                <div class="col">
+                                    <input id="twYear" class="form-control-plaintext" v-model="newItem.twYear" readonly>
                                 </div>
                                 <div class="col">
                                     <article class="btn-toolbar justify-content-between">
