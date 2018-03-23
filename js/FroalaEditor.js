@@ -41,7 +41,7 @@ $(function () {
             newAddItem: function () {
                 $('.editModal').modal('toggle')
                 $('#froala-editor').froalaEditor('html.set', '')
-                this.newItem = {}
+                this.newItem = {};
                 this.newItem.title = ''
                 this.newItem.type = '0'
                 this.newItem.title = ''
@@ -87,20 +87,17 @@ $(function () {
                     this.alterClass = "shake is-invalid"
                     toastr.error('標題為必填欄位')
                 } else {
-                    item.cont = $('#froala-editor').froalaEditor('html.get')
-
                     let childKey = item['.key']
                     delete item['.key']
+                    this.newItem.cont = $('#froala-editor').froalaEditor('html.get')
                     itemsRef.child(childKey).set(item)
                     delete childKey
-                    toastr.info('更新成功')
-                    $('.editModal').modal('toggle')
-                    // location.reload()
-                    }
+                    // toastr.info('更新成功')
+                    // $('.editModal').modal('toggle')
+                    location.reload()
+                }
             },
-            CancelBtn: function (item) {
-                delete item['.key']
-                this.newItem = {}
+            CancelBtn: function () {
                 this.alterClass = ''
                 $('.editModal').modal('toggle')
             }
@@ -131,6 +128,7 @@ $(function () {
     // })()
 
     // $(function () {
+    toastr.options = {"timeOut": "1000"}
 
     $('button').tooltip()
     $('#froala-editor').froalaEditor({
@@ -156,18 +154,18 @@ $(function () {
         //     'formatUL', 'insertHTML', 'html'
         // ]
     })
-        .on('froalaEditor.contentChanged', function (e, editor) {
-            editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-1]', function () {
-                editor.html.insert('<i class="ml-1 fa fa-file-pdf-o text-danger"></i>')
-                editor.events.focus()
-            })
-            editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-2]', function () {
-                editor.html.insert('<i class="ml-1 fa fa-file-word-o text-primary"></i>')
-                editor.events.focus()
-            })
-            editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-new]', function () {
-                editor.html.insert('<img class="ml-2" src="imgs/newIco.gif">')
-                editor.events.focus()
-            })
+    .on('froalaEditor.contentChanged', function (e, editor) {
+        editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-1]', function () {
+            editor.html.insert('<i class="ml-1 fa fa-file-pdf-o text-danger"></i>')
+            editor.events.focus()
         })
+        editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-2]', function () {
+            editor.html.insert('<i class="ml-1 fa fa-file-word-o text-primary"></i>')
+            editor.events.focus()
+        })
+        editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-new]', function () {
+            editor.html.insert('<img class="ml-2" src="imgs/newIco.gif">')
+            editor.events.focus()
+        })
+    })
 })
