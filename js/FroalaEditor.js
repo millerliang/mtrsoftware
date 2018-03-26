@@ -19,6 +19,14 @@ $(function () {
         el: '#app',
         data: {
             alterClass: '',
+            creatNew: {
+                key: '',
+                type: '0',
+                title: '',
+                date: '',
+                twYear: '',
+                cont: ''
+            },
             newItem: {
                 type: '',
                 title: '',
@@ -33,6 +41,15 @@ $(function () {
         computed: {
             reverseItems() {
                 return this.items.slice(0).reverse()
+            },
+            calculateDate: {
+                get: function () {
+                    return this.newItem.date
+                },
+                set: function (value) {
+                    this.newItem.date = value;
+                    this.newItem.twYear = value.substr(0, 4) - 1911 + '年'
+                }
             }
         },
         methods: {
@@ -42,13 +59,10 @@ $(function () {
             newAddItem: function () {
                 $('.editModal').modal('toggle')
                 $('#froala-editor').froalaEditor('html.set', '')
-                this.newItem = {};
-                this.newItem.title = ''
-                this.newItem.type = '0'
-                this.newItem.title = ''
-                this.newItem.date = ''
-                this.newItem.twYear = ''
-                this.newItem.cont = ''
+                // delete this.newItem['.key']
+                // this.newItem['.key'] = ''
+                this.newItem = this.creatNew
+                // console.log(this.newItem)
                 // toastr.info('建立新項目')
             },
             addItem: function () {
@@ -57,7 +71,6 @@ $(function () {
                     toastr.error('標題為必填欄位')
                 } else {
                     this.newItem.cont = $('#froala-editor').froalaEditor('html.get')
-                    this.newItem.twYear = document.querySelector('#twYear').value
                     itemsRef.push(this.newItem)
                     toastr.info('新增成功')
                     $('.editModal').modal('toggle')
@@ -82,16 +95,15 @@ $(function () {
                 }
             },
             updateItem: function (item) {
+                let childKey = item['.key']
+                delete item['.key']
                 if (this.newItem.title === "") {
                     this.alterClass = "shake is-invalid"
                     toastr.error('標題為必填欄位')
                 } else {
-                    let childKey = item['.key']
-                    delete item['.key']
                     this.newItem.cont = $('#froala-editor').froalaEditor('html.get')
-                    this.newItem.twYear = document.querySelector('#twYear').value
                     itemsRef.child(childKey).set(item)
-                    delete childKey
+                    // delete childKey
                     // toastr.info('更新成功')
                     // $('.editModal').modal('toggle')
                     location.reload()
@@ -105,20 +117,20 @@ $(function () {
     })
 
     /* event listener */
-    document.querySelector('#itemAuthor').addEventListener('change', doThing);
+    // document.querySelector('#itemAuthor').addEventListener('change', doThing);
 
     /* function */
-    function doThing() {
-        if (this.value === ''){
-            document.querySelector('#twYear').value = ('')
-            return false
-        }else{
-            let tempNum = this.value.replace(/-/g,".")
-            let twYear = (this.value.substr(0,4) - 1911 )
-            // document.querySelector('#twYear').value = (`${tempNum} = 民國 ${twYear}年`)
-            document.querySelector('#twYear').value = (`${twYear}年`)
-        }
-    }
+    // function doThing() {
+    //     if (this.value === ''){
+    //         document.querySelector('#twYear').value = ('')
+    //         return false
+    //     }else{
+    //         let tempNum = this.value.replace(/-/g,".")
+    //         let twYear = (this.value.substr(0,4) - 1911 )
+    //         // document.querySelector('#twYear').value = (`${tempNum} = 民國 ${twYear}年`)
+    //         document.querySelector('#twYear').value = (`${twYear}年`)
+    //     }
+    // }
 
     // Do something​
     // const QS = document.querySelector('.form-control') // 簡化固定 Const 變數
@@ -144,9 +156,9 @@ $(function () {
     // })()
 
     // $(function () {
-    toastr.options = {"timeOut": "1000"}
+    toastr.options = {"timeOut": "1000"} // Toast show timeOut
 
-    $('button').tooltip()
+    $('button').tooltip() // bootstrap v4.0 tooltip
     $('#froala-editor').froalaEditor({
         // iframeStyleFiles: ['//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'],
         language: 'zh_tw',
@@ -165,10 +177,10 @@ $(function () {
         },
         // toolbarSticky: true,
         // colorsBackground: ['#61BD6D', '#1ABC9C', '#aa00ee', 'REMOVE'],
-        // toolbarButtons: [
-        //     'undo', 'redo', '|', 'paragraphFormat', 'fontSize', 'color', '|', 'underline', 'bold', 'italic', 'underline', '|', 'formatOL',
-        //     'formatUL', 'insertHTML', 'html'
-        // ]
+        toolbarButtons: [
+            'undo', 'redo', '|', 'paragraphFormat', 'fontSize', 'insertLink', 'insertImage', 'color', '|', 'underline', 'bold', 'italic',
+            'insertTable', 'paragraphStyle', '|', 'align', 'formatOL', 'formatUL', 'insertHTML', 'outdent', 'indent', '|', 'clearFormatting', 'html'
+        ]
     })
     .on('froalaEditor.contentChanged', function (e, editor) {
         editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-1]', function () {

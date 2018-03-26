@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.5/css/froala_editor.pkgd.min.css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.5/css/froala_style.min.css"/>
     <style>
-        .modal {z-index:5;}
-        .modal-lg {max-width: 1280px;}
+        .modal {z-index:5;padding-right:0!important;}
+        .modal-lg {max-width: 1080px;}
         .modal-backdrop,.sticky-top {z-index:4;}
     </style>
 </head>
@@ -59,21 +59,22 @@
             <table class="table table-sm table-hover table-striped">
                 <thead class="text-nowrap">
                     <tr>
-                        <th>日 期</th>
-                        <th>民 國</th>
-                        <th>類 別</th>
-                        <th>標 題</th>
-                        <th>內 容</th>
+                        <th class="text-center">日 期</th>
+                        <th class="text-center">類 別</th>
+                        <!-- <th>標 題</th> -->
+                        <th><span class="pl-3">內 容</span></th>
                         <th class="text-center">功 能</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="item in reverseItems" :key="item['.key']">
-                        <td class="text-nowrap">{{item.date}}</td>
-                        <td class="text-nowrap">{{item.twYear}}</td>
-                        <td class="text-nowrap">{{item.type}}</td>
-                        <td>{{item.title}}</td>
-                        <td v-html="item.cont"></td>
+                        <td class="text-nowrap">{{item.date}}<h6>民國 {{item.twYear}}</h6></td>
+                        <td class="text-nowrap text-center">{{item.type}}</td>
+                        <td>
+                            <p class="pl-3">標題：{{item.title}}</p>
+                            <div class="pl-3 pr-3" v-html="item.cont"></div>
+                        </td>
+                        <!-- <td v-html="item.cont"></td> -->
                         <td class="text-center text-nowrap">
                             <button class="btn btn-link" @click="editItem(item)" title="編輯項目">
                                 <i class="fa fa-edit text-muted"></i>
@@ -118,10 +119,10 @@
                                     </select>
                                 </div>
                                 <div class="col">
-                                    <input id="itemAuthor" class="form-control" type="date" v-model="newItem.date" placeholder="輸入日期">
+                                    <input class="form-control" type="date" v-model="calculateDate" placeholder="輸入日期">
                                 </div>
                                 <div class="col">
-                                    <input id="twYear" class="form-control-plaintext" v-model="newItem.twYear" readonly>
+                                    <input class="form-control-plaintext" v-model="newItem.twYear" readonly>
                                 </div>
                                 <div class="col">
                                     <article class="btn-toolbar justify-content-between">
