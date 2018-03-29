@@ -16,9 +16,20 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.5/css/froala_editor.pkgd.min.css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.5/css/froala_style.min.css"/>
     <style>
+        main#app {font-size:15px;}
         .modal {z-index:5;padding-right:0!important;}
         .modal-lg {max-width: 1080px;}
         .modal-backdrop,.sticky-top {z-index:4;}
+        .蒙利特公司{color:red;}
+        .健保政策{color:#f87427;}
+        .健保資訊{color:#12ac4d;}
+        .健保新聞{color:#2a6b91;}
+        .國民健康局{color:#9556b3;}
+        .醫師公會{color:#466194;}
+        .技術問題{color:#a02c68;}
+        .國健署{color:#13b1a9;}
+        .疾管署{color:#2a5ead;}
+        .其他{color:#605f64;}
     </style>
 </head>
 <body>
@@ -68,10 +79,10 @@
                 </thead>
                 <tbody>
                     <tr v-for="item in reverseItems" :key="item['.key']">
-                        <td class="text-nowrap">{{item.date}}<h6>民國 {{item.twYear}}</h6></td>
-                        <td class="text-nowrap text-center">{{item.type}}</td>
+                        <td class="text-nowrap pl-2 pr-2">{{item.date}}<h6 class="text-muted">民國 {{item.twYear}}</h6></td>
+                        <td class="text-nowrap text-center" :class="item.type">{{item.type}}</td>
                         <td>
-                            <p class="pl-3">標題：{{item.title}}</p>
+                            <p class="pl-3 text-muted">標題：{{item.title}}</p>
                             <div class="pl-3 pr-3" v-html="item.cont"></div>
                         </td>
                         <!-- <td v-html="item.cont"></td> -->
@@ -91,7 +102,7 @@
                 <article class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <header class="modal-header">
-                            <h4 class="modal-title" id="modelTitleId">
+                            <h4 class="modal-title">
                                 <span v-if="!newItem['.key']"><i class="fa fa-plus text-danger"></i> 新增消息</span>
                                 <span v-if="newItem['.key']"><i class="fa fa-pencil text-success"></i> 編輯消息</span>
                             </h4>
@@ -101,7 +112,7 @@
                         </header>
                         <div class="modal-body">
                             <section class="form-group">
-                                <input id="itemTitle" @click="myTitleClass" class="form-control" :class="[alterClass,'animated']" type="text" v-model="newItem.title" placeholder="輸入標題名稱">
+                                <input id="itemTitle" @click="myTitleClass" class="form-control" :class="[alterClass,'animated']" type="text" v-model.trim="newItem.title" placeholder="輸入標題名稱">
                             </section>
                             <section class="row form-group">
                                 <div class="col">
@@ -110,6 +121,7 @@
                                         <option value="蒙利特公司">蒙利特公司</option>
                                         <option value="健保政策">健保政策</option>
                                         <option value="健保資訊">健保資訊</option>
+                                        <option value="健保新聞">健保新聞</option>
                                         <option value="國民健康局">國民健康局</option>
                                         <option value="醫師公會">醫師公會</option>
                                         <option value="技術問題">技術問題</option>
@@ -133,6 +145,12 @@
                                             <button class="btn btn-sm btn-outline-secondary" data-iconSet-2 title="插入 word 圖示">icon
                                                 <i class="fa fa-file-word-o"></i>
                                             </button>
+                                            <button class="btn btn-sm btn-outline-secondary" data-iconSet-3 title="插入 image 圖示">icon
+                                                <i class="fa fa-file-image-o"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary" data-iconSet-4 title="插入 link 圖示">icon
+                                                <i class="fa fa-external-link"></i>
+                                            </button>
                                             <button class="btn btn-sm btn-outline-secondary" data-iconSet-new title="插入 new 圖示">icon
                                                 <img src="imgs/newIco.gif">
                                             </button>
@@ -151,15 +169,13 @@
                                     </article>
                                 </div>
                             </section>
-                            <textarea class="form-control" id="froala-editor" v-html="newItem.cont" v-model="newItem.cont"></textarea>
+                            <textarea class="form-control" id="froala-editor" v-model="newItem.cont"></textarea>
 
                         </div>
                         <footer class="modal-footer">
                             <button type="button" class="btn btn-default" @click="CancelBtn">&times; 取消</button>
-                            <button type="button" class="btn btn-info" v-if="!newItem['.key']" @click="addItem">
-                                <i class="fa fa-save"></i> 新增</button>
-                            <button type="button" class="btn btn-success" v-if="newItem['.key']" @click="updateItem(newItem)">
-                                <i class="fa fa-check"></i> 更新</button>
+                            <button type="button" class="btn btn-info" v-if="!newItem['.key']" @click="addItem"><i class="fa fa-save"></i> 新增</button>
+                            <button type="button" class="btn btn-success" v-if="newItem['.key']" @click="updateItem(newItem)"><i class="fa fa-check"></i> 更新</button>
                         </footer>
                     </div>
                 </article>

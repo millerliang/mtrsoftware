@@ -47,8 +47,9 @@ $(function () {
                     return this.newItem.date
                 },
                 set: function (value) {
-                    this.newItem.date = value;
+                    this.newItem.date = value
                     this.newItem.twYear = value.substr(0, 4) - 1911 + '年'
+                    // this.twMon = value.replace(/-/g,".").substr(6, 2)
                 }
             }
         },
@@ -95,12 +96,12 @@ $(function () {
                 }
             },
             updateItem: function (item) {
-                let childKey = item['.key']
-                delete item['.key']
                 if (this.newItem.title === "") {
                     this.alterClass = "shake is-invalid"
                     toastr.error('標題為必填欄位')
                 } else {
+                    let childKey = item['.key']
+                    delete item['.key']
                     this.newItem.cont = $('#froala-editor').froalaEditor('html.get')
                     itemsRef.child(childKey).set(item)
                     // delete childKey
@@ -156,7 +157,7 @@ $(function () {
     // })()
 
     // $(function () {
-    toastr.options = {"timeOut": "1000"} // Toast show timeOut
+    toastr.options = {"timeOut": "800"} // Toast show timeOut
 
     $('button').tooltip() // bootstrap v4.0 tooltip
     $('#froala-editor').froalaEditor({
@@ -183,12 +184,22 @@ $(function () {
         ]
     })
     .on('froalaEditor.contentChanged', function (e, editor) {
+        // $('#froala-editor').froalaEditor('html.get');
+        // $('textarea#froala-editor').froalaEditor('html.get')
         editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-1]', function () {
             editor.html.insert('<i class="ml-1 fa fa-file-pdf-o text-danger"></i>')
             editor.events.focus()
         })
         editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-2]', function () {
             editor.html.insert('<i class="ml-1 fa fa-file-word-o text-primary"></i>')
+            editor.events.focus()
+        })
+        editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-3]', function () {
+            editor.html.insert('<i class="ml-1 fa fa-file-image-o text-muted"></i>')
+            editor.events.focus()
+        })
+        editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-4]', function () {
+            editor.html.insert('<i class="ml-1 fa fa-external-link text-primary"></i>')
             editor.events.focus()
         })
         editor.events.bindClick($('section.btn-group'), 'button[data-iconSet-new]', function () {
