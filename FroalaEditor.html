@@ -170,7 +170,7 @@
                                 </div>
                             </section>
                             <textarea class="form-control" id="froala-editor" v-model="newItem.cont"></textarea>
-
+                            <p class="mt-2" v-if="newItem.editDate != ''"><small class="text-muted">最後編輯：{{newItem.editDate}}</small></p>
                         </div>
                         <footer class="modal-footer">
                             <button type="button" class="btn btn-default" @click="CancelBtn">&times; 取消</button>
