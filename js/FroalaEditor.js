@@ -20,7 +20,6 @@ $(function () {
         data: {
             alterClass: '',
             creatNew: {
-                //key: '',
                 type: '0',
                 title: '',
                 date: '',
@@ -76,10 +75,7 @@ $(function () {
             newAddItem: function () {
                 $('.editModal').modal('toggle')
                 $('#froala-editor').froalaEditor('html.set', '')
-                // delete this.newItem['.key']
-                // this.newItem['.key'] = ''
                 this.newItem = this.creatNew
-                // console.log(this.newItem)
                 // toastr.info('建立新項目')
             },
             addItem () {
@@ -112,20 +108,20 @@ $(function () {
                     return false
                 }
             },
-            updateItem (item) {
+            updateItem(item) {
                 if (this.newItem.title === "") {
                     this.alterClass = "shake is-invalid"
                     toastr.error('標題為必填欄位')
                 } else {
                     let childKey = item['.key']
+                    itemsRef.child(item['.key']).remove()
                     delete item['.key']
                     this.newItem.editDate = this.timeStamp
                     this.newItem.cont = $('#froala-editor').froalaEditor('html.get')
-                    itemsRef.child(childKey).set(item)
-                    // delete childKey
-                    // toastr.info('更新成功')
-                    // $('.editModal').modal('toggle')
-                    location.reload()
+                    itemsRef.child(childKey).set(this.newItem)
+                    delete childKey
+                    toastr.info('更新成功')
+                    $('.editModal').modal('toggle')
                 }
             },
             CancelBtn () {
